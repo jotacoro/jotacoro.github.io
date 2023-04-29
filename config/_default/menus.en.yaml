@@ -1,0 +1,6 @@
+---
+main:
+  - identifier: contact
+    name: Submit Request
+    url: "mailto:johnwavesounds@gmail.com"
+    weight: 10

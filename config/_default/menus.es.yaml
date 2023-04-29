@@ -1,0 +1,6 @@
+---
+main:
+  - identifier: contact
+    name: Envíame tu propuesta
+    url: "mailto:johnwavesounds@gmail.com"
+    weight: 10

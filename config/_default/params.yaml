@@ -1,0 +1,32 @@
+---
+repository: https://github.com/jotacoro/juanddddiego.github.io
+author: Juan Diego Coronel Montesinos
+defaultTheme: light
+displayFullLangName: true
+disableThemeToggle: true
+disableScrollToTop: true
+ShowBreadCrumbs: false
+DisableAnchoredHeadings: true
+ShowShareButtons: false
+ShowToc: false
+ShowPostNavLinks: true
+
+assets:
+  favicon: "/favicon.ico"
+  favicon16x16:  "/favicon-16x16.png"
+  favicon32x32:  "/favicon-32x32.png"
+  apple_touch_icon:  "/apple-touch-icon.png"
+  safari_pinned_tab:  "/favicon-32x32.png"
+
+cover:
+  responsiveImages: true
+
+socialIcons:
+  - name: "spotify"
+    url: "https://open.spotify.com/artist/4gqPkdOGFyoMJjngPEwI9C?si=GD2yxz0wTS2ti6A9lJP_Pg"
+  - name: "applemusic"
+    url: "https://music.apple.com/es/artist/juanddddiego/1598911228?l=en"
+  - name: "instagram"
+    url: "https://www.instagram.com/juanddddiego/"
+  - name: "email"
+    url: "mailto:johnwavesounds@gmail.com"

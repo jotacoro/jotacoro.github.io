@@ -1,0 +1,8 @@
+author:
+  name: "Juan Diego Coronel Montesinos"
+baseURL: ""
+enableEmoji: true
+keywords: [website, portfolio, contact]
+
+title: juanddddiego
+theme: "PaperMod"

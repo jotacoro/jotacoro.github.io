@@ -1,0 +1,14 @@
+---
+languageCode: en
+languageName: EN
+params:
+  DateFormat: January 02, 2006
+  profileMode:
+    enabled: true
+    imageUrl: "/home.png"
+    imageTitle: "home image"
+    buttons:
+      - identifier: portfolio
+        name: Portfolio
+        url: "/portfolio"
+weight: 2
