@@ -10,5 +10,5 @@ params:
     buttons:
       - identifier: portfolio
         name: Portfolio
-        url: "/portfolio"
+        url: "/en/portfolio"
 weight: 2

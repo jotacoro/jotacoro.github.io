@@ -104,10 +104,6 @@
     justify-content: space-between;
 }
 
-.post-entry:active {
-    transform: scale(0.96);
-}
-
 .tag-entry .entry-cover {
     display: none;
 }
