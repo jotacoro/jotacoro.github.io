@@ -3,10 +3,16 @@ title: House Of Modistilla
 type: page
 description: Tell me.
 topic: blog, hugo, github
-params:
-  socialIcons:
-    - name: "spotify"
-      url: "https://open.spotify.com/track/5diY3EvugyrIeY0ju0zdQe?si=6645b9c1645c466f"
+songNotes: [
+  "Single for the House of Modistilla clothing collection.",
+  "70s/80s disco music like.",
+  "Appearance on regional TV and radio.",
+  "Additional extended version for runway show at CLEC Fashion Festival 2022."
+]
+songImageUrl: "/hom_cover.jpg"
+socialIcons:
+  - name: "spotify"
+    url: "https://open.spotify.com/track/5diY3EvugyrIeY0ju0zdQe?si=6bccab349ff5497d"
+  - name: "applemusic"
+    url: "https://music.apple.com/es/album/house-of-modistilla-feat-juanddddiego/1650595628?i=1650596177"
 ---
-
-mimimi momomo pero en inglés

@@ -52,6 +52,7 @@
 {{- end }}
 
 {{- $term := .Data.Term }}
+<div class="post-grid">
 {{- range $index, $page := $paginator.Pages }}
 
 {{- $class := "post-entry" }}
@@ -66,26 +67,22 @@
 <article class="{{ $class }}">
   {{- $isHidden := (site.Params.cover.hidden | default site.Params.cover.hiddenInList) }}
   {{- partial "cover.html" (dict "cxt" . "IsHome" true "isHidden" $isHidden) }}
-  <img src="/home.png" alt="" height="{{- site.Params.label.iconHeight | default "200" -}}">
+  {{- partial "song_img.html" .Params.songImageUrl }}
   <header class="entry-header">
     <h2>
       {{- .Title }}
       {{- if .Draft }}<sup><span class="entry-isdraft">&nbsp;&nbsp;[draft]</span></sup>{{- end }}
     </h2>
   </header>
-  <ul>
-    <li>Característica 1</li>
-    <li>Característica 2</li>
-    <li>Característica 3</li>
-  </ul>
-  {{- partial "social_icons.html" site.Params.socialIcons -}}
+  {{- partial "song_notes.html" .Params.songNotes }}
+  {{- partial "social_icons.html" .Params.socialIcons -}}
   {{- if (ne (.Param "hideSummary") true) }}
   {{- end }}
   {{- if not (.Param "hideMeta") }}
   {{- end }}
-  <a class="entry-link" aria-label="post link to {{ .Title | plainify }}" href="{{ .Permalink }}"></a>
 </article>
 {{- end }}
+</div>
 
 {{- if gt $paginator.TotalPages 1 }}
 <footer class="page-footer">

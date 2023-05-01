@@ -1,15 +1,13 @@
 ---
-title: House Of Modistilla
+title: House Of Modistilla - Alternative Version
 type: page
 description: Dime.
 topic: blog, hugo, github
 songNotes: [
-  "Single para la colección de prendas House of Modistilla.",
-  "Disco de los 70/80.",
-  "Aparición en TV y radio autonómicas.",
-  "Versión extendida adicional para desfile de pasarela en CLEC Fashion Festival 2022."
+  "Primera versión de HOM, descartada por el productor ejecutivo y lanzada como single independiente por la intérprete.",
+  "Influencias pop y disco sobre una rítmica que recuerda al dancehall."
 ]
-songImageUrl: "/hom_cover.jpg"
+songImageUrl: "/hom-alt-version_cover.jpg"
 socialIcons:
   - name: "spotify"
     url: "https://open.spotify.com/track/5diY3EvugyrIeY0ju0zdQe?si=6bccab349ff5497d"
