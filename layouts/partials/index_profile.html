@@ -30,7 +30,7 @@
             height="{{ .imageHeight | default 150 }}" width="{{ .imageWidth | default 150 }}" />
         {{- end }}
         {{- end }}
-        <span>{{ .subtitle | markdownify }}</span>
+        <h1>{{ .subtitle | markdownify }}</h1>
         {{- partial "social_icons.html" site.Params.socialIcons -}}
 
         {{- with .buttons }}

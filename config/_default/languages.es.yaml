@@ -7,8 +7,9 @@ params:
     enabled: true
     imageUrl: "/home.png"
     imageTitle: "cabecera"
+    subtitle: Hago música
     buttons:
       - identifier: portfolio
         name: Mis Trabajos
-        url: "/es/portfolio"
+        url: "/portfolio"
 weight: 1

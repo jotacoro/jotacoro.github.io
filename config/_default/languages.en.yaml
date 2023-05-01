@@ -7,8 +7,9 @@ params:
     enabled: true
     imageUrl: "/home.png"
     imageTitle: "home image"
+    subtitle: I make music
     buttons:
       - identifier: portfolio
         name: Portfolio
-        url: "/portfolio"
+        url: "/en/portfolio"
 weight: 2
