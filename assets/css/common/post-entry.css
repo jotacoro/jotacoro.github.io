@@ -63,6 +63,7 @@
 .social-icons {
     display: flex;
     justify-content: center;
+    align-items: flex-end;
 }
 
 .social-icons a svg {
@@ -77,6 +78,9 @@
     border-radius: var(--radius);
     transition: transform 0.1s;
     border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .post-entry:active {

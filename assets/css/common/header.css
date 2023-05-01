@@ -18,6 +18,24 @@
     margin: auto var(--gap);
 }
 
+@media screen and (max-width: 767px) {
+    .logo{
+        display: flex;
+        margin: auto var(--gap);
+        margin-bottom: 20px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #menu {
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+      margin: auto;
+      text-align: center;
+    }
+  }
+  
 .logo {
     flex-wrap: inherit;
 }
