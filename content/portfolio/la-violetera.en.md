@@ -6,8 +6,8 @@ topic: blog, hugo, github
 songImageUrl: "/la-violetera_cover.jpg"
 songNotes: [
   "Reinterpretation of Sara Montiel's classic.",
-  "Synth-based soundscape.",
-  "Minimalism with timely details that reinforce the narrative."
+  "Drone synth-based soundscape.",
+  "Minimalist piece with certain details that reinforce the narrative."
 ]
 socialIcons:
   - name: "spotify"
