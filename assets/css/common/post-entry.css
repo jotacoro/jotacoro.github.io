@@ -79,6 +79,7 @@
 .song-note {
     list-style-position: inside;
     text-indent: -1em;
+    text-indent: initial;
 }
 
 .social-icons {
