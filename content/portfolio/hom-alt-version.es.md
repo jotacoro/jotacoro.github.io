@@ -4,8 +4,9 @@ type: page
 description: Dime.
 topic: blog, hugo, github
 songNotes: [
-  "Primera versión de HOM, descartada por el productor ejecutivo y lanzada como single independiente por la intérprete.",
-  "Influencias pop y disco sobre una rítmica que recuerda al dancehall."
+  "Composición, producción y mezcla.",
+  "Primera versión de HOM, descartada por el productor ejecutivo.",
+  "Publicada como single independiente por la propia intérprete.",
 ]
 songImageUrl: "/hom-alt-version_cover.jpg"
 socialIcons:

@@ -82,6 +82,21 @@
     text-indent: initial;
 }
 
+.song-note a {
+    text-decoration: underline;
+}
+
+.song-note a:hover {
+
+    text-decoration: underline;
+    text-decoration-color: #DC7DE0;
+}
+
+.song-note a:active {
+    color: #DC7DE0;
+
+}
+
 .social-icons {
     display: flex;
     justify-content: center;

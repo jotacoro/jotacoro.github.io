@@ -1,7 +1,7 @@
 <div class="song-notes-container">
 <ul class="song-notes-list" style="list-style-type:inherit">
   {{- range .}}
-    <li class="song-note">{{.}}</li>
+    <li class="song-note">{{. | markdownify}}</li>
   {{- end -}}
 </ul>
 </div>

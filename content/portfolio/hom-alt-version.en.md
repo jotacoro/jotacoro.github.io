@@ -4,8 +4,9 @@ type: page
 description: Tell me.
 topic: blog, hugo, github
 songNotes: [
-  "First version of HOM, discarded by the executive producer and released as an independent single by the performer.",
-  "Pop and disco influences over a dancehall-like rhythm."
+  "Composition, production and mix.",
+  "First version of HOM, discarded by the executive producer.",
+  "Released as an independent single by the performer.",
 ]
 songImageUrl: "/hom-alt-version_cover.jpg"
 socialIcons:

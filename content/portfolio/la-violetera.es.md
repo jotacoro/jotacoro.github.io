@@ -5,9 +5,9 @@ description: De la orquesta a los sintetizadores drone, reinterpretando un clás
 topic: blog, hugo, github
 songImageUrl: "/la-violetera_cover.jpg"
 songNotes: [
+  "Composición, producción y mezcla.",
   "Reinterpretación del clásico de Sara Montiel.",
   "Paisaje sonoro basado en sintetizadores drone.",
-  "Minimalismo con detalles oportunos que refuerzan la narración."
 ]
 socialIcons:
   - name: "spotify"

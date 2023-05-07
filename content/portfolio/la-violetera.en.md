@@ -5,9 +5,9 @@ description: Reinterpretation of a spanish folklore song with drone synths.
 topic: blog, hugo, github
 songImageUrl: "/la-violetera_cover.jpg"
 songNotes: [
+  "Composition, production and mix.",
   "Reinterpretation of Sara Montiel's classic.",
   "Drone synth-based soundscape.",
-  "Minimalist piece with certain details that reinforce the narrative."
 ]
 socialIcons:
   - name: "spotify"

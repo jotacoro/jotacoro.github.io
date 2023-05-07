@@ -4,10 +4,10 @@ type: page
 description: Tell me.
 topic: blog, hugo, github
 songNotes: [
-  "Single for the House of Modistilla clothing collection.",
-  "70s/80s disco music like.",
-  "Played on regional TV and radio.",
-  "Additional extended version for fashion show at CLEC Fashion Festival 2022."
+  "Composition, production and mix.",
+  "Single for the [House of Modistilla](https://www.instagram.com/modistilla_official/) clothing collection.",
+  "Additional extended version for fashion show at [CLEC Fashion Festival 2022](https://clec.fashion/).",
+  "Played on Valencian Community public TV and radio."
 ]
 songImageUrl: "/hom_cover.jpg"
 socialIcons:

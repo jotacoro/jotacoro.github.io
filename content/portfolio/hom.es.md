@@ -4,10 +4,10 @@ type: page
 description: Dime.
 topic: blog, hugo, github
 songNotes: [
-  "Single para la colección de prendas House of Modistilla.",
-  "Disco de los 70/80.",
-  "Versión extendida adicional para desfile de pasarela en CLEC Fashion Festival 2022.",
-  "Aparición en TV y radio autonómicas."
+  "Composición, producción y mezcla.",
+  "Single para la colección de prendas [House of Modistilla](https://www.instagram.com/modistilla_official/).",
+  "Versión extendida adicional para desfile de pasarela en [CLEC Fashion Festival 2022](https://clec.fashion/).",
+  "Aparición en TV y radio de la Comunidad Valenciana."
 ]
 songImageUrl: "/hom_cover.jpg"
 socialIcons:
