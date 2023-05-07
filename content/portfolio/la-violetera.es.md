@@ -6,7 +6,7 @@ topic: blog, hugo, github
 songImageUrl: "/la-violetera_cover.jpg"
 songNotes: [
   "Reinterpretación del clásico de Sara Montiel.",
-  "Paisaje sonoro basado en sintetizadores.",
+  "Paisaje sonoro basado en sintetizadores drone.",
   "Minimalismo con detalles oportunos que refuerzan la narración."
 ]
 socialIcons:

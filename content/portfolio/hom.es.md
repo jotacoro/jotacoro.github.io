@@ -6,8 +6,8 @@ topic: blog, hugo, github
 songNotes: [
   "Single para la colección de prendas House of Modistilla.",
   "Disco de los 70/80.",
-  "Aparición en TV y radio autonómicas.",
-  "Versión extendida adicional para desfile de pasarela en CLEC Fashion Festival 2022."
+  "Versión extendida adicional para desfile de pasarela en CLEC Fashion Festival 2022.",
+  "Aparición en TV y radio autonómicas."
 ]
 songImageUrl: "/hom_cover.jpg"
 socialIcons:
