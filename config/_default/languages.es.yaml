@@ -1,6 +1,5 @@
 ---
 languageCode: es
-languageName: ES
 params:
   DateFormat: January 02, 2006
   profileMode:
