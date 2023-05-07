@@ -1,6 +1,6 @@
 author:
   name: Juan Diego Coronel Montesinos
-baseURL: http://jotacoro.github.io/
+baseURL: "http://jotacoro.github.io/"
 defaultContentLanguage: es
 languages:
   es:

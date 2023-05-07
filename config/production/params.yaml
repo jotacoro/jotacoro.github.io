@@ -1,6 +1,6 @@
 ---
 env: production
-repository: https://github.com/jotacoro/jotacoro.github.io
+repository: "https://github.com/jotacoro/jotacoro.github.io"
 author: Juan Diego Coronel Montesinos
 defaultTheme: light
 displayFullLangName: true

@@ -6,7 +6,6 @@ params:
   profileMode:
     enabled: true
     imageUrl: "/home.png"
-    imageTitle: "home image"
     subtitle: I make music
     buttons:
       - identifier: portfolio

@@ -6,7 +6,6 @@ params:
   profileMode:
     enabled: true
     imageUrl: "/home.png"
-    imageTitle: "cabecera"
     subtitle: Hago música
     buttons:
       - identifier: portfolio
