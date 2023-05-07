@@ -1,6 +1,6 @@
 author:
   name: Juan Diego Coronel Montesinos
-baseURL: http://localhost:1313/
+baseURL: http://jotacoro.github.io/
 defaultContentLanguage: es
 languages:
   es:
@@ -11,7 +11,7 @@ languages:
     weight: 2
 enableEmoji: true
 keywords: [website, portfolio, contact]
-title: juanddddiego DEV
+title: juanddddiego
 theme: "PaperMod"
 enableRobotsTXT: true
 buildDrafts: false
