@@ -1,0 +1,8 @@
+<h1 class="dinamyc-title">
+  <span class="morphing">
+    {{- range $.words}}
+      <span class="morphing-word">{{ . }}</span>
+    {{- end -}}
+    <span class="static-word">{{ $.subtitle }}</span>
+  </span>
+</h1>

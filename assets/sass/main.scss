@@ -1,0 +1,34 @@
+.morphing::before, .morphing::after {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+$speed: 10s;
+$wordCount: 4;
+
+.morphing {
+  position: relative;
+  filter: contrast(25) blur(0.01px);
+}
+
+.morphing-word {
+  position: absolute;
+  left:0;
+  transform: translate(-50%, -50%);
+  animation: word $speed infinite ease-in-out;
+
+  @for $i from 0 to $wordCount {
+    &:nth-child(#{$i + 1}) {
+      animation-delay: ($speed / ($wordCount + 1) * $i) - $speed;
+    }
+  }
+
+  @keyframes word {
+    0%, 5%, 100% { filter: blur(0px); opacity: 1; }        
+    20%, 80% { filter: blur(1em); opacity: 0; }        
+  }
+}
+
+.static-word {
+    position: relative;
+}

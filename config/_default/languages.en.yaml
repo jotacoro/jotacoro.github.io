@@ -6,6 +6,7 @@ params:
     enabled: true
     imageUrl: "/home.png"
     subtitle: I make music
+    words: ["make", "compose", "produce", "mix"]
     buttons:
       - identifier: portfolio
         name: Portfolio

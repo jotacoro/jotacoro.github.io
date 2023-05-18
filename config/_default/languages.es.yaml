@@ -5,7 +5,8 @@ params:
   profileMode:
     enabled: true
     imageUrl: "/home.png"
-    subtitle: Hago música
+    subtitle: música
+    words: ["Hago", "Compongo", "Produzco", "Mezclo"]
     buttons:
       - identifier: portfolio
         name: Mis Trabajos

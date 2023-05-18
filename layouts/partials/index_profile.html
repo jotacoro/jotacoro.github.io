@@ -30,7 +30,7 @@
             height="{{ .imageHeight | default 150 }}" width="{{ .imageWidth | default 150 }}" />
         {{- end }}
         {{- end }}
-        <h1>{{ .subtitle | markdownify }}</h1>
+        {{- partial "morph_words.html" (dict "cxt" . "words" .words "subtitle" .subtitle) }}
         {{- partial "social_icons.html" site.Params.socialIcons -}}
 
         {{- with .buttons }}
