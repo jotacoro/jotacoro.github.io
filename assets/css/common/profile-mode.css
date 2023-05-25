@@ -25,7 +25,8 @@
     background: var(--tertiary);
     border-radius: var(--radius);
     margin: 8px;
-    padding: 6px;
+    padding: 10px;
+    font-size: 25px;
     transition: transform 0.1s;
 }
 
@@ -39,4 +40,16 @@
 
 .profile .profile_inner h1 {
     padding: 10px 0;
+    font-size: 50px;
+}
+
+.profile_inner img {
+    width: 400px;
+    height: 400px;
+    margin-bottom: 50px;
+}
+
+.profile_inner .social-icons a svg {
+    height: 65px;
+    width: 65px;
 }
