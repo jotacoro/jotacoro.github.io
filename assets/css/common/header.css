@@ -78,7 +78,7 @@ body:not(.dark) #sun {
 
 #menu li {
     margin-inline-start: var(--gap);
-    line-height: 20px;
+    line-height: 30px;
     background: var(--tertiary);
     border-radius: var(--radius);
     border: 1px;
@@ -90,7 +90,7 @@ body:not(.dark) #sun {
 }
 
 #menu a {
-    font-size: 20px;
+    font-size: 24px;
 }
 
 #menu .active {

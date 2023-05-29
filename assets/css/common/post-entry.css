@@ -103,10 +103,7 @@
     align-items: flex-end;
 }
 
-.social-icons a svg {
-    height: 50px;
-    width: 50px;
-}
+
 
 .post-entry {
     position: relative;
