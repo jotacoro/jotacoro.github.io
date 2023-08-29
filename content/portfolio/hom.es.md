@@ -1,5 +1,6 @@
 ---
 title: House Of Modistilla
+date: 2022-10-28T01:00:00
 type: page
 description: Dime.
 topic: blog, hugo, github
@@ -14,5 +15,5 @@ socialIcons:
   - name: "spotify"
     url: "https://open.spotify.com/track/5diY3EvugyrIeY0ju0zdQe?si=6bccab349ff5497d"
   - name: "applemusic"
-    url: "https://music.apple.com/es/album/house-of-modistilla-feat-juanddddiego/1650595628?i=1650596177"
+    url: "https://music.apple.com/es/album/house-of-modistilla-feat-juanddddiego/1650595628"
 ---
