@@ -9,7 +9,6 @@ songNotes: [
   "Composición, producción y mezcla.",
   "Primer single de la artista [Letizia Conceta](https://www.instagram.com/letiziaconceta/).",
   "Reinterpretación del clásico de [Sara Montiel](https://www.youtube.com/watch?v=I1Rll1KKSB8).",
-  "Paisaje sonoro basado en sintetizadores drone.",
 ]
 socialIcons:
   - name: "spotify"

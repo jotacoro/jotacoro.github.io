@@ -9,7 +9,6 @@ songNotes: [
   "Composition, production and mix.",
   "First single for artist [Letizia Conceta](https://www.instagram.com/letiziaconceta/).",
   "Reinterpretation of [Sara Montiel's classic](https://www.youtube.com/watch?v=I1Rll1KKSB8).",
-  "Drone synth-based soundscape.",
 ]
 socialIcons:
   - name: "spotify"

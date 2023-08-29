@@ -6,8 +6,7 @@ description: Tell me.
 topic: blog, hugo, github
 songNotes: [
   "Composition, production and mix.",
-  "Single for the [House of Modistilla](https://www.instagram.com/modistilla_official/) clothing collection.",
-  "Additional extended version for fashion show at [CLEC Fashion Festival 2022](https://clec.fashion/).",
+  "Single for the [HOM](https://www.instagram.com/modistilla_official/) clothing collection, exposed at [CLEC 2022](https://clec.fashion/).",
   "Played on Valencian Community public TV and radio."
 ]
 songImageUrl: "/hom_cover.jpg"
