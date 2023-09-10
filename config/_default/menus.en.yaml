@@ -4,3 +4,7 @@ main:
     name: Submit Request
     url: "mailto:hola@juanddddiego.com"
     weight: 10
+  - identifier: bookings
+    name: Book a Meeting
+    pageRef: /bookings
+    weight: 20

@@ -4,3 +4,7 @@ main:
     name: Envíame tu propuesta
     url: "mailto:hola@juanddddiego.com"
     weight: 10
+  - identifier: bookings
+    name: Haz una reserva
+    pageRef: /bookings
+    weight: 20
