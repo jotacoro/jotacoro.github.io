@@ -18,7 +18,9 @@
 }
 
 #menu {
-  display: absolute;
+  position: absolute;
+  top: 0;
+  margin-top: 50px;
   flex-direction: column;
   list-style-type: none;
   left: 0;
@@ -30,6 +32,7 @@
   word-break: keep-all;
   overflow-x: auto;
   white-space: nowrap;
+  z-index: 1000;
 }
 
 @media screen and (max-width: 767px) {
@@ -44,6 +47,7 @@
     position: absolute;
     top: 0;
     margin-top: 50px;
+    list-style-type: none;
     left: 0;
     flex-direction: column;
     width: 100%;
