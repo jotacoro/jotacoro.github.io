@@ -1,6 +1,14 @@
 ---
 main:
+  - identifier: portfolio
+    name: Mis trabajos
+    pageRef: /portfolio
+    weight: 10
   - identifier: contact
     name: Envíame tu propuesta
     url: "mailto:hola@juanddddiego.com"
-    weight: 10
+    weight: 20
+  - identifier: bookings
+    name: Haz una reserva
+    pageRef: /bookings
+    weight: 30
