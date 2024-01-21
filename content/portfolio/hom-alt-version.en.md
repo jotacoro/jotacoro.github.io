@@ -6,7 +6,7 @@ description: Tell me.
 topic: blog, hugo, github
 songNotes: [
   "Composition, production and mix.",
-  "First version of HOM, discarded by the executive producer.",
+  "First version of HOM, discarded by the [executive producer](https://www.instagram.com/_modistilla/).",
   "Released as an independent single by the performer.",
 ]
 songImageUrl: "/hom-alt-version_cover.jpg"

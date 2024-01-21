@@ -6,7 +6,7 @@ description: Dime.
 topic: blog, hugo, github
 songNotes: [
   "Composición, producción y mezcla.",
-  "Primera versión de HOM, descartada por el productor ejecutivo.",
+  "Primera versión de HOM, descartada por el [productor ejecutivo](https://www.instagram.com/_modistilla/).",
   "Publicada como single independiente por la propia intérprete.",
 ]
 songImageUrl: "/hom-alt-version_cover.jpg"
