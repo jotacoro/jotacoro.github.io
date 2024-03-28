@@ -6,7 +6,7 @@ description: When trap meets dembow.
 topic: blog, hugo, github
 songNotes: [
   "Composition, production, mix and master.",
-  "First single for artist [Elah Guerrero](https://www.instagram.com/yautiaprieta/).",
+  "Second single for artist [Elah Guerrero](https://www.instagram.com/yautiaprieta/).",
   "Mix of trap, reggaeton and dembow."
 ]
 songImageUrl: "/la-cadena_cover.jpg"

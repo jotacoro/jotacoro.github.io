@@ -7,7 +7,7 @@ topic: blog, hugo, github
 songImageUrl: "/la-violetera_cover.jpg"
 songNotes: [
   "Composition, production and mix.",
-  "First single for artist [Letizia Conceta](https://www.instagram.com/letiziaconceta/).",
+  "[Letizia Conceta](https://www.instagram.com/letiziaconceta/)'s first single.",
   "Reinterpretation of [Sara Montiel's classic](https://www.youtube.com/watch?v=I1Rll1KKSB8).",
 ]
 socialIcons:
