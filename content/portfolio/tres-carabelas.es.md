@@ -12,7 +12,7 @@ songNotes: [
 songImageUrl: "/tres-carabelas.jpeg"
 socialIcons:
   - name: "spotify"
-    url: ""
+    url: "https://open.spotify.com/track/7uMnXiFHIp5ZEp14sXiVR6"
   - name: "applemusic"
-    url: ""
+    url: "https://music.apple.com/es/album/las-3-carabelas-feat-juanddddiego/1735093557"
 ---

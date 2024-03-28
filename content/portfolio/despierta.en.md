@@ -12,7 +12,7 @@ songNotes: [
 ]
 socialIcons:
   - name: "spotify"
-    url: ""
+    url: "https://open.spotify.com/track/0HKxQr6nLVXRVKTlgu2Qvm"
   - name: "applemusic"
-    url: ""
+    url: "https://music.apple.com/es/album/despierta-feat-juanddddiego/1728506100"
 ---
