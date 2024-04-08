@@ -15,4 +15,6 @@ socialIcons:
     url: "https://open.spotify.com/track/08KirRqdM2Mtve7lcprtfP"
   - name: "applemusic"
     url: "https://music.apple.com/es/album/mi-buen-amor-feat-juanddddiego/1698211934"
+  - name: "youtube"
+    url: "https://www.youtube.com/watch?v=7SSL9A1aIVY"
 ---

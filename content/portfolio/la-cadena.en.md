@@ -15,4 +15,6 @@ socialIcons:
     url: "https://open.spotify.com/track/6pWd7kBBiQ8K1JnGJFPZpA"
   - name: "applemusic"
     url: "https://music.apple.com/es/album/la-cadena/1725486196?i=1725486378"
+  - name: "youtube"
+    url: "https://www.youtube.com/watch?v=WxknVY7hwbs"
 ---

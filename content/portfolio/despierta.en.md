@@ -15,4 +15,6 @@ socialIcons:
     url: "https://open.spotify.com/track/0HKxQr6nLVXRVKTlgu2Qvm"
   - name: "applemusic"
     url: "https://music.apple.com/es/album/despierta-feat-juanddddiego/1728506100"
+  - name: "youtube"
+    url: "https://www.youtube.com/watch?v=kh6PblMT3FE" 
 ---
