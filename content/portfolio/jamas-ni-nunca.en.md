@@ -15,4 +15,6 @@ socialIcons:
     url: "https://open.spotify.com/track/6pWd7kBBiQ8K1JnGJFPZpA"
   - name: "applemusic"
     url: "https://music.apple.com/es/album/jam%C3%A1s-ni-nunca/1699226018"
+  - name: "youtube"
+    url: "https://www.youtube.com/watch?v=t6uJ-8P_jEk"
 ---
