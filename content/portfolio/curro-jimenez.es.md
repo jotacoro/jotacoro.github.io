@@ -7,7 +7,8 @@ topic: blog, hugo, github
 songImageUrl: "/curro-jimenez_cover.jpg"
 songNotes: [
   "Composición, producción y mezcla.",
-  "Single adelanto del primer álbum de [Letizia Conceta](https://www.instagram.com/letiziaconceta/), _el querer(se)_."
+  "Single adelanto del primer álbum de [Letizia Conceta](https://www.instagram.com/letiziaconceta/), _el querer(se)_.",
+  "Un viaje bueno. Que disfruten :)"
 ]
 socialIcons:
   - name: "spotify"

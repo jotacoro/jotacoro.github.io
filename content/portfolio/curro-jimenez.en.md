@@ -7,7 +7,8 @@ topic: blog, hugo, github
 songImageUrl: "/curro-jimenez_cover.jpg"
 songNotes: [
   "Composition, production and mix.",
-  "Single for [Letizia Conceta](https://www.instagram.com/letiziaconceta/) in advance of her first album, _el querer(se)_."
+  "Single for [Letizia Conceta](https://www.instagram.com/letiziaconceta/) in advance of her first album, _el querer(se)_.",
+  "A good trip. Enjoy it :)"
 ]
 socialIcons:
   - name: "spotify"
