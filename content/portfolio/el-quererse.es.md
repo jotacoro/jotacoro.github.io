@@ -1,18 +1,17 @@
 ---
 title: El querer(se)
-date: 2024-04-18T00:00:00
+date: 2024-06-27T00:00:00
 type: page
-description: Single adelanto del primer álbum de Letizia Conceta
+description: Álbum debut de Letizia Conceta
 topic: blog, hugo, github
 songNotes: [
-  "Composición, producción y mezcla.",
-  "Single adelanto del primer álbum de [Letizia Conceta](https://www.instagram.com/letiziaconceta/), _el querer(se)_.",
-  "Un bolero oscuro."
+  "Composición, grabación, producción musical/vocal y mezcla.",
+  "Primer álbum de [Letizia Conceta](https://www.instagram.com/letiziaconceta/).",
 ]
 songImageUrl: "/el-quererse_cover.jpg"
 socialIcons:
   - name: "spotify"
-    url: "https://open.spotify.com/track/5mK8ysBEPni1joEBg4ugfl?si=cf6940b43d844a78"
+    url: "https://open.spotify.com/"
   - name: "applemusic"
-    url: "https://music.apple.com/es/album/el-querer-se-feat-juanddddiego/1741023423"
+    url: "https://music.apple.com/"
 ---
