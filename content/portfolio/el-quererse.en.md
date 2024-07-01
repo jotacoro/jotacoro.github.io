@@ -1,6 +1,6 @@
 ---
 title: El querer(se)
-date: 2024-06-27T00:00:00
+date: 2024-07-01T00:00:00
 type: page
 description: Letizia Conceta's first album
 topic: blog, hugo, github
@@ -13,5 +13,5 @@ socialIcons:
   - name: "spotify"
     url: "https://open.spotify.com/"
   - name: "applemusic"
-    url: "https://music.apple.com/"
+    url: "https://music.apple.com/us/album/el-querer-se-feat-juanddddiego-ep/1754987619"
 ---
