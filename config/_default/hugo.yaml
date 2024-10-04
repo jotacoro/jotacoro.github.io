@@ -10,6 +10,8 @@ languages:
     languageName: EN
     weight: 2
 enableEmoji: true
+pagination:
+  pagerSize: 9
 keywords: [website, portfolio, contact]
 title: juanddddiego DEV
 theme: "PaperMod"

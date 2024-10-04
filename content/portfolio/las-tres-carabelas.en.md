@@ -9,7 +9,7 @@ songNotes: [
   "Third single for artist [Elah Guerrero](https://www.instagram.com/yautiaprieta/).",
   "Mix of amapiano and merengue de calle."
 ]
-songImageUrl: "/tres-carabelas.jpeg"
+songImageUrl: "/tres-carabelas_cover.jpeg"
 socialIcons:
   - name: "spotify"
     url: "https://open.spotify.com/track/7uMnXiFHIp5ZEp14sXiVR6"

@@ -25,6 +25,11 @@
 
 .pagination .next {
     margin-inline-start: auto;
+    margin-top: 20px;
+}
+
+.pagination .prev {
+    margin-top: 20px;
 }
 
 .social-icons {
