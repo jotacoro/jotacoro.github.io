@@ -3,7 +3,7 @@ title: 10.000 años de Sol
 date: 2024-09-19T00:00:00
 type: page
 description: Collab with Pierre Dember
-topic: blog, hugo, github
+topic: single, prod
 songNotes: [
   "Co-production, guitars and vocals.",
   "Included in the album [EXTRAÑO](https://album.link/extranyo) by [Pierre Dember](https://www.instagram.com/pierredember/)."

@@ -3,7 +3,7 @@ title: Mi Buen Amor
 date: 2023-08-11T00:00:00
 type: page
 description: Reinterpretation of the original ballad by Mon Laferte and Bunbury.
-topic: blog, hugo, github
+topic: single, prod, mix
 songImageUrl: "/mi-buen-amor_cover.jpeg"
 songNotes: [
   "Composition, production and mix.",

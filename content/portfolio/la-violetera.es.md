@@ -3,7 +3,7 @@ title: La Violetera
 date: 2022-10-10T00:00:00
 type: page
 description: De la orquesta a los sintetizadores drone, reinterpretando un clásico.
-topic: blog, hugo, github
+topic: single, prod, mix
 songImageUrl: "/la-violetera_cover.jpg"
 songNotes: [
   "Composición, producción y mezcla.",

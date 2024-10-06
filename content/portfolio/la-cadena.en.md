@@ -3,7 +3,7 @@ title: La Cadena
 date: 2024-01-17T00:00:00
 type: page
 description: When trap meets dembow.
-topic: blog, hugo, github
+topic: single, prod, mix, master
 songNotes: [
   "Composition, production, mix and master.",
   "Second single for artist [Elah Guerrero](https://www.instagram.com/yautiaprieta/).",

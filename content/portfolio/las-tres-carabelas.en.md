@@ -3,7 +3,7 @@ title: Las 3 Carabelas
 date: 2024-03-27T00:00:00
 type: page
 description: Amapiano and merengue de calle.
-topic: blog, hugo, github
+topic: single, prod, mix, master
 songNotes: [
   "Composition, production, mix and master.",
   "Third single for artist [Elah Guerrero](https://www.instagram.com/yautiaprieta/).",

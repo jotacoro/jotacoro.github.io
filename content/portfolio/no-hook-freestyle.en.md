@@ -3,7 +3,7 @@ title: No_hook_freestyle
 date: 2024-07-12T00:00:00
 type: page
 description: Single for Dellachaouen
-topic: blog, hugo, github
+topic: single, mix
 songNotes: [
   "Vocal recording/production.",
   "Mix.",

@@ -3,7 +3,7 @@ title: House Of Modistilla
 date: 2022-10-28T01:00:00
 type: page
 description: Dime.
-topic: blog, hugo, github
+topic: single, prod, mix
 songNotes: [
   "Composición, producción y mezcla.",
   "Single para la colección de prendas [HOM](https://www.instagram.com/_modistilla/), expuesta en la pasarela del [CLEC 2022](https://clec.fashion/).",

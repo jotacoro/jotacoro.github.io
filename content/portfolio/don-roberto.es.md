@@ -3,7 +3,7 @@ title: Don Roberto
 date: 2024-05-05T00:00:00
 type: page
 description: Don Juan Tenorio s.XXI
-topic: blog, hugo, github
+topic: ost, prod, mix, master
 songImageUrl: "/don-roberto_cover.png"
 songNotes: [
   "Composición, producción, mezcla y masterización.",

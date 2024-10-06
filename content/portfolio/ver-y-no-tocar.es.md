@@ -3,7 +3,7 @@ title: VerYNoTocar_154bpm_Fmaj_v4.wav
 date: 2024-08-15T00:00:00
 type: page
 description: Single para Elah Guerrero
-topic: blog, hugo, github
+topic: single, prod, mix, master
 songNotes: [
   "Composición, producción, grabación, mezcla y masterización.",
   "Single para [Elah Guerrero](https://www.instagram.com/yautiaprieta/).",

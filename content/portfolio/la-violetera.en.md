@@ -3,7 +3,7 @@ title: La Violetera
 date: 2022-10-10T00:00:00
 type: page
 description: Reinterpretation of a spanish folklore song with drone synths.
-topic: blog, hugo, github
+topic: single, prod, mix
 songImageUrl: "/la-violetera_cover.jpg"
 songNotes: [
   "Composition, production and mix.",

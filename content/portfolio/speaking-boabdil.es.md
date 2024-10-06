@@ -3,7 +3,7 @@ title: Speaking Boabdil
 date: 2024-09-12T00:00:00
 type: page
 description: Single para Dellachaouen.
-topic: blog, hugo, github
+topic: single, mix
 songNotes: [
   "Grabación y producción vocal.",
   "Single para [Dellachaouen](https://www.instagram.com/dellachaouen/)."

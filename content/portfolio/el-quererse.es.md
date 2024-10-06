@@ -3,7 +3,7 @@ title: El querer(se)
 date: 2024-07-01T00:00:00
 type: page
 description: Álbum debut de Letizia Conceta
-topic: blog, hugo, github
+topic: album, prod, mix
 songNotes: [
   "Composición, grabación, producción musical/vocal y mezcla.",
   "Primer álbum de [Letizia Conceta](https://www.instagram.com/letiziaconceta/).",

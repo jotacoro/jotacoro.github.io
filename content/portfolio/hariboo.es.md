@@ -3,7 +3,7 @@ title: Hariboo
 date: 2024-08-23T00:00:00
 type: page
 description: Single para Dellachaouen y GlorySixVain.
-topic: blog, hugo, github
+topic: single, mix, master
 songNotes: [
   "Grabación y producción vocal para [Dellachaouen](https://www.instagram.com/dellachaouen/).",
   "Mezcla y mastering.",

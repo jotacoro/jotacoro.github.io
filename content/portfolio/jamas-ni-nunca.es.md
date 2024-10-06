@@ -3,7 +3,7 @@ title: Jamás Ni Nunca
 date: 2023-08-02T00:00:00
 type: page
 description: Mezcla de drill y gagá con aires flamencos
-topic: blog, hugo, github
+topic: single, prod, mix, master
 songNotes: [
   "Composición, producción, mezcla y masterización.",
   "Primer single de la artista [Elah Guerrero](https://www.instagram.com/yautiaprieta/).",
