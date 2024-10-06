@@ -11,6 +11,6 @@ songNotes: [
   "En colaboración con [LACRVZ](https://www.instagram.com/lacruzmusic.wav/) y [KANNO](https://www.instagram.com/plutokan/)."
 ]
 socialIcons:
-  - name: "tickets"
-    url: "https://taquilla.ivc.gva.es/janto/main.php?Nivel=Evento&idEvento=ROBERTO24"
+  - name: "other"
+    url: "https://a-mas.net/espectaculos/don-roberto/"
 ---

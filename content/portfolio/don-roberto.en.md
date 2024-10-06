@@ -11,6 +11,6 @@ songNotes: [
   "Collaboratively with [LACRVZ](https://www.instagram.com/lacruzmusic.wav/) y [KANNO](https://www.instagram.com/plutokan/)."
 ]
 socialIcons:
-  - name: "tickets"
-    url: "https://open.spotify.com/track/5diY3EvugyrIeY0ju0zdQe?si=6bccab349ff5497d"
+  - name: "other"
+    url: "https://a-mas.net/espectaculos/don-roberto/"
 ---
