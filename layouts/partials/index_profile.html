@@ -31,7 +31,7 @@
         {{- end }}
         {{- end }}
         <h1>{{ .subtitle | markdownify }}</h1>
-        {{- partial "social_icons.html" -}}
+        {{- partial "social_icons.html" site.Params.socialIcons -}}
     </div>
     {{- end}}
 </div>

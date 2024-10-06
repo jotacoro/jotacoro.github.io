@@ -75,7 +75,7 @@
     </h2>
   </header>
   {{- partial "song_notes.html" .Params.songNotes }}
-  {{- partial "social_icons.html" -}}
+  {{- partial "social_icons.html" .Params.socialIcons -}}
   {{- if (ne (.Param "hideSummary") true) }}
   {{- end }}
   {{- if not (.Param "hideMeta") }}
