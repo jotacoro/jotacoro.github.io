@@ -12,7 +12,7 @@ songNotes: [
 songImageUrl: "/space-diva_cover.jpg"
 socialIcons:
   - name: "spotify"
-    url: "https://song.link/space-diva-petardas-bastardas"
+    url: "https://open.spotify.com/track/59QZVI4i93SgpSkbSDqT4y?si=7ab4af72aa8e4e89"
   - name: "steam"
     url: "https://store.steampowered.com/app/3044510/Space_Diva/"
 ---
