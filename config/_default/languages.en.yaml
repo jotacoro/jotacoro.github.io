@@ -1,12 +1,14 @@
 ---
 languageCode: en
-languageName: EN
 params:
   DateFormat: January 02, 2006
+  label:
+    iconHeight: 250;
   profileMode:
     enabled: true
     imageUrl: "/home.png"
-    imageTitle: "home image"
+    imageWidth: 350;
+    imageHeight: 350;
     subtitle: I make music
     buttons:
       - identifier: portfolio

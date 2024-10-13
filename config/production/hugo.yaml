@@ -1,13 +1,13 @@
 author:
   name: Juan Diego Coronel Montesinos
-baseURL: http://jotacoro.github.io/
+baseURL: "http://jotacoro.github.io/"
 defaultContentLanguage: es
 languages:
   es:
-    languageName: Spanish
+    languageName: ES
     weight: 1
   en:
-    languageName: English
+    languageName: EN
     weight: 2
 enableEmoji: true
 keywords: [website, portfolio, contact]

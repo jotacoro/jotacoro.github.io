@@ -1,12 +1,14 @@
 ---
 languageCode: es
-languageName: ES
 params:
   DateFormat: January 02, 2006
+  label:
+    iconHeight: 250;
   profileMode:
     enabled: true
     imageUrl: "/home.png"
-    imageTitle: "cabecera"
+    imageWidth: 350;
+    imageHeight: 350;
     subtitle: Hago música
     buttons:
       - identifier: portfolio

@@ -1,0 +1,17 @@
+---
+title: 10.000 años de Sol
+date: 2024-09-19T00:00:00
+type: page
+description: Collab with Pierre Dember
+topic: blog, hugo, github
+songNotes: [
+  "Co-production, guitars and vocals.",
+  "Included in the album [EXTRAÑO](https://album.link/extranyo) by [Pierre Dember](https://www.instagram.com/pierredember/)."
+]
+songImageUrl: "/10k-años-sol_cover.jpg"
+socialIcons:
+  - name: "spotify"
+    url: "https://open.spotify.com/track/6yjICWWl59pvE1D5S37UjU?si=dbd48de9b6ed4447"
+  - name: "applemusic"
+    url: "https://music.apple.com/es/album/10-000-a%C3%B1os-de-sol-feat-juanddddiego/1759465521?i=1759465532"
+---

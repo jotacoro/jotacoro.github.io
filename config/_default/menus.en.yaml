@@ -1,6 +1,14 @@
 ---
 main:
+  - identifier: portfolio
+    name: Portfolio
+    pageRef: /portfolio
+    weight: 10
   - identifier: contact
     name: Submit Request
-    url: "mailto:johnwavesounds@gmail.com"
-    weight: 10
+    url: "mailto:hola@juanddddiego.com"
+    weight: 20
+  - identifier: bookings
+    name: Book a Meeting
+    pageRef: /bookings
+    weight: 30

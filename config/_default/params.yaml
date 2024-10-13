@@ -1,5 +1,4 @@
 ---
-repository: http://github.com/jotacoro/jotacoro.github.io
 author: Juan Diego Coronel Montesinos
 defaultTheme: light
 displayFullLangName: true
@@ -27,4 +26,4 @@ socialIcons:
   - name: "applemusic"
     url: "https://music.apple.com/es/artist/juanddddiego/1598911228?l=en"
   - name: "email"
-    url: "mailto:johnwavesounds@gmail.com"
+    url: "mailto:hola@juanddddiego.com"

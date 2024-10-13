@@ -1,18 +1,25 @@
 author:
   name: Juan Diego Coronel Montesinos
-baseURL: http://localhost:1313/
+baseURL: "http://localhost:1313/"
 defaultContentLanguage: es
 languages:
   es:
-    languageName: Spanish
+    languageName: ES
     weight: 1
   en:
-    languageName: English
+    languageName: EN
     weight: 2
 enableEmoji: true
+pagination:
+  pagerSize: 9
 keywords: [website, portfolio, contact]
 title: juanddddiego DEV
+title: juanddddiego DEV
 theme: "PaperMod"
+enableRobotsTXT: true
+buildDrafts: false
+minify:
+  disableXML: true
 enableRobotsTXT: true
 buildDrafts: false
 minify:
