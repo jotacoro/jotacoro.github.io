@@ -14,7 +14,12 @@ pagination:
   pagerSize: 9
 keywords: [website, portfolio, contact]
 title: juanddddiego DEV
+title: juanddddiego DEV
 theme: "PaperMod"
+enableRobotsTXT: true
+buildDrafts: false
+minify:
+  disableXML: true
 enableRobotsTXT: true
 buildDrafts: false
 minify:
