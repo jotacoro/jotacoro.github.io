@@ -12,6 +12,6 @@ params:
     subtitle: I make music
     buttons:
       - identifier: portfolio
-        name: Portfolio
+        name: Some projects
         url: "/en/portfolio"
 weight: 2

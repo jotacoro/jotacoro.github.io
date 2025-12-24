@@ -12,6 +12,6 @@ params:
     subtitle: Hago música
     buttons:
       - identifier: portfolio
-        name: Mis Trabajos
+        name: Algunos trabajos
         url: "/portfolio"
 weight: 1
