@@ -6,12 +6,12 @@ params:
     iconHeight: 250;
   profileMode:
     enabled: true
-    imageUrl: "/home.png"
+    imageUrl: "/home.gif"
     imageWidth: 350;
     imageHeight: 350;
     subtitle: I make music
     buttons:
       - identifier: portfolio
-        name: Portfolio
+        name: Some projects
         url: "/en/portfolio"
 weight: 2

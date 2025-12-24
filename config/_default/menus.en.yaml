@@ -1,14 +1,14 @@
 ---
 main:
   - identifier: portfolio
-    name: Portfolio
+    name: Some projects
     pageRef: /portfolio
     weight: 10
   - identifier: contact
-    name: Submit Request
+    name: Submit request
     url: "mailto:hola@juanddddiego.com"
     weight: 20
   - identifier: bookings
-    name: Book a Meeting
+    name: Book a meeting
     pageRef: /bookings
     weight: 30

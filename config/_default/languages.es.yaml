@@ -6,12 +6,12 @@ params:
     iconHeight: 250;
   profileMode:
     enabled: true
-    imageUrl: "/home.png"
+    imageUrl: "/home.gif"
     imageWidth: 350;
     imageHeight: 350;
     subtitle: Hago música
     buttons:
       - identifier: portfolio
-        name: Mis Trabajos
+        name: Algunos trabajos
         url: "/portfolio"
 weight: 1

@@ -6,8 +6,7 @@ description: Tell me.
 topic: blog, hugo, github
 songNotes: [
   "Composition, production and mix.",
-  "Single for the [HOM](https://www.instagram.com/_modistilla/) clothing collection, exposed at [CLEC 2022](https://clec.fashion/).",
-  "Played on Valencian Community public TV and radio."
+  "Single for the [HOM](https://www.instagram.com/_modisstudio/) clothing collection, exposed at [CLEC 2022](https://clec.fashion/clec-gallery/2022-cleclovepink), Valencia (Spain).",
 ]
 songImageUrl: "/hom_cover.jpg"
 socialIcons:
