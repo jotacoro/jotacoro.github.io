@@ -7,12 +7,12 @@ topic: blog, hugo, github
 songImageUrl: "/don-roberto_cover.png"
 songNotes: [
   "Composition, production, mix and master.",
-  "Original soundtrack for [Leamok](https://www.leamok.com)'s [third production](https://ivc.gva.es/es/escena/programacion-escena/don-roberto).",
-  "Collaboratively with [LACRVZ](https://www.instagram.com/lacruzmusic.wav/) y [KANNO](https://www.instagram.com/plutokan/)."
+  "Original soundtrack for [Leamok](https://www.redescena.net/compania/40060/leamok/)'s [third production](https://ivc.gva.es/es/escena/programacion-escena/don-roberto).",
+  "Collaboratively with [LACRVZ](https://www.instagram.com/lacruzmusic.wav/) y [KANNO](https://www.instagram.com/ka.nnnn.o/)."
 ]
 socialIcons:
   - name: "other"
-    url: "https://a-mas.net/espectaculos/don-roberto/"
+    url: "https://www.redescena.net/espectaculo/42800/don-roberto/"
   - name: "youtube"
     url: "https://www.youtube.com/watch?v=SnxOBEk-0HM"
 ---

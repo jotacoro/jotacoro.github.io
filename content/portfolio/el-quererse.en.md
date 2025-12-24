@@ -6,7 +6,7 @@ description: Letizia Conceta's first album
 topic: blog, hugo, github
 songNotes: [
   "Composition, recording, music/vocal production and mix.",
-  "[Letizia Conceta](https://www.instagram.com/letiziaconceta/)'s first album.",
+  "[Letizia Conceta](https://www.instagram.com/letiziaconceta/)'s album debut.",
 ]
 songImageUrl: "/el-quererse_cover.jpg"
 socialIcons:

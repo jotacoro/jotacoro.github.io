@@ -6,8 +6,7 @@ description: Dime.
 topic: blog, hugo, github
 songNotes: [
   "Composición, producción y mezcla.",
-  "Single para la colección de prendas [HOM](https://www.instagram.com/_modistilla/), expuesta en la pasarela del [CLEC 2022](https://clec.fashion/).",
-  "Aparición en TV y radio de la Comunidad Valenciana."
+  "Single para la colección de prendas [HOM](https://www.instagram.com/_modisstudio/), expuesta en la pasarela del [CLEC 2022](https://clec.fashion/clec-gallery/2022-cleclovepink).",
 ]
 songImageUrl: "/hom_cover.jpg"
 socialIcons:
