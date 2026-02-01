@@ -1,0 +1,25 @@
+<div class="players">
+    <div
+            class="player__wrapper"
+            data-audio-a="/{{.clientReferenceUrl}}"
+            data-audio-b="/{{.masterTrimUrl}}"
+            data-audio-c="/{{.masterUrl}}"
+    >
+        <div class="progress__container progress">
+            <div class="progress__bar progress__fill"></div>
+        </div>
+        <div class="ab__controls">
+            <button class="ab__button a__button" disabled="true">{{ i18n "audio_player_button_a" }}</button>
+            <button class="ab__button b__button" disabled="true">{{ i18n "audio_player_button_b" }}</button>
+            <button class="ab__button c__button" disabled="true">{{ i18n "audio_player_button_c" }}</button>
+        </div>
+        <div class="play__stop__controls">
+            <button class="play__pause__button play__button" disabled="true">
+                <i class="fa-solid fa-play"></i>
+            </button>
+            <button class="play__pause__button stop__button" disabled="true">
+                <i class="fa-solid fa-stop"></i>
+            </button>
+        </div>
+    </div>
+</div>

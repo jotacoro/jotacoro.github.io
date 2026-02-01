@@ -1,0 +1,8 @@
+- id: audio_player_button_a
+  translation: "Client reference"
+
+- id: audio_player_button_b
+  translation: "Mix/Master Gain Match"
+
+- id: audio_player_button_c
+  translation: "Mix/Master"
