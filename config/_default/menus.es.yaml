@@ -4,11 +4,15 @@ main:
     name: Algunos trabajos
     pageRef: /portfolio
     weight: 10
+  - identifier: mix-master-portfolio
+    name: Mix/Master
+    pageRef: /mix-master-portfolio
+    weight: 20
   - identifier: contact
     name: Envíame tu propuesta
     url: "mailto:hola@juanddddiego.com"
-    weight: 20
+    weight: 30
   - identifier: bookings
     name: Haz una reserva
     pageRef: /bookings
-    weight: 30
+    weight: 40
