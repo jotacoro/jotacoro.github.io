@@ -67,7 +67,6 @@
     <article class="{{ $class }}">
         {{- $isHidden := (site.Params.cover.hidden | default site.Params.cover.hiddenInList) }}
         {{- partial "cover.html" (dict "cxt" . "IsHome" true "isHidden" $isHidden) }}
-        {{- partial "song_img.html" .Params.songImageUrl }}
         {{- partial "audio-player.html" .Params }}
         <header class="entry-header">
             <h2>
