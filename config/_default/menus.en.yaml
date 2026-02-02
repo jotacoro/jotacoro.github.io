@@ -4,11 +4,15 @@ main:
     name: Some projects
     pageRef: /portfolio
     weight: 10
+  - identifier: mix-master-portfolio
+    name: Mix/Master
+    pageRef: /mix-master-portfolio
+    weight: 20    
   - identifier: contact
     name: Submit request
     url: "mailto:hola@juanddddiego.com"
-    weight: 20
+    weight: 30
   - identifier: bookings
     name: Book a meeting
     pageRef: /bookings
-    weight: 30
+    weight: 40

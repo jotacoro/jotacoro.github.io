@@ -1,0 +1,147 @@
+.player__wrapper {
+    border: 1px solid var(--border);
+    display: inline-grid;
+    border-radius: var(--radius);
+    background: #edf5ff;
+    padding: 20px 10px 20px 10px;
+    width: 100%;
+    min-width: 0;
+}
+
+.ab__controls {
+    display: grid;
+    align-content: center;
+    align-items: stretch;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, auto);
+    justify-content: center;
+    justify-items: center;
+    width: 100%;
+    gap: 0.5rem;
+    min-width: 0;
+}
+
+button {
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    border: none;
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: var(--radius);
+    background: #c7daff;
+    cursor: pointer;
+    transition: all ease-in-out 0.3s;
+}
+
+button:disabled {
+    color: var(--code-bg);
+    transition: all ease-in-out 0.3s;
+}
+
+.a__button,
+.b__button,
+.c__button {
+    border-radius: 4px;
+    font-size: 0.8rem;
+    width: max-content;
+    min-width: 80%;
+    max-width: 100%;
+    color: #2118a3;
+}
+
+.a__button:enabled,
+.b__button:enabled,
+.c__button:enabled {
+    border-radius: 4px;
+    font-size: 0.8rem;
+    width: max-content;
+    min-width: 80%;
+    max-width: 100%;
+    box-shadow: 30px 40px 50px 10px #2118a3 inset;
+    color: var(--code-bg);
+    transition: all ease-in-out 0.3s;
+    transform: scale(1.05);
+    font-weight: bold;
+}
+
+.a__button:disabled,
+.b__button:disabled,
+.c__button:disabled {
+    color: var(--secondary);
+    background-color: var(--code-bg);
+    transition: all ease-in-out 0.3s;
+}
+
+.a__button:disabled:hover,
+.b__button:disabled:hover,
+.c__button:disabled:hover {
+    color: var(--secondary);
+    background-color: var(--code-bg);
+}
+
+.a__button:enabled:hover,
+.b__button:enabled:hover,
+.c__button:enabled:hover {
+    box-shadow: 30px 40px 50px 10px #2118a3 inset;
+    color: var(--code-bg);
+    transition: all ease-in-out 0.3s;
+    transform: scale(1.05);
+    font-weight: bold;
+}
+
+.play__button {
+    border: 1px solid var(--border);
+    width: 5rem;
+    color: rgb(108 98 255);
+    justify-self: self-end;
+}
+
+.play__button:disabled:hover {
+    color: #9992ff;
+}
+
+.stop__button {
+    border: 1px solid var(--border);
+    width: 5rem;
+    color: rgb(108 98 255);
+    justify-self: self-start;
+}
+
+.stop__button:disabled:hover {
+    color: #9992ff;
+}
+
+.stop__button:disabled {
+    color: rgb(108 98 255);
+}
+
+.play__stop__controls {
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    grid-gap: 1rem;
+}
+
+.progress__container {
+    border: 1px solid var(--border);
+    display: inline-flex;
+    height: 1rem;
+    width: 100%;
+    margin-bottom: 2.4rem;
+    border-radius: 10px;
+    background: var(--entry);
+    cursor: pointer;
+    align-self: center;
+    overflow: hidden;
+}
+
+.progress__bar {
+    background: linear-gradient(360deg, #6c62ff, #67a2ff);
+    border-radius: 12px;
+    transition: all ease-in-out 0.03s;
+}
+
+.progress__fill {
+    width: 0;
+}
