@@ -89,6 +89,7 @@ button:hover {
 }
 
 .progress__container {
+    border: 1px solid var(--border);
     display: inline-flex;
     height: 1rem;
     width: 100%;
