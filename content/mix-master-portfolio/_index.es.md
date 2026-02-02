@@ -1,3 +1,3 @@
 ---
-title: Mix/Master Portfolio
+title: Ejemplos de Mix/Master
 ---
