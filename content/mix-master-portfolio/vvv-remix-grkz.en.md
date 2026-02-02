@@ -1,5 +1,5 @@
 ---
-title: VVV - El ángel de la historia (Grkzk Remix) 
+title: El ángel de la historia (grkzk Remix) 
 date: 2025-11-14T00:00:00
 type: page
 description: Remaster for a VVV [Trippin'you] remix.
