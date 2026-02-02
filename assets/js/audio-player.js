@@ -1,9 +1,4 @@
 let players = document.querySelectorAll('.player__wrapper');
-const colorSchemes = {
-    a: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-    b: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
-    c: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)'
-};
 
 initializePlayers(players);
 
@@ -117,18 +112,42 @@ function initializePlayers(players) {
                     bButton.disabled = false;
                     cButton.disabled = false;
                     playButton.innerHTML = pauseIcon;
+
+                    //Change A button style
+                    player.querySelectorAll('.a__button').forEach((btn) => {
+                        btn.style.background = '#c7daff';
+                        btn.style.color = '#2118a3';
+                        btn.style.fontWeight = 'bold';
+                        btn.style.border = '2px solid #2118a3';
+                    });
                 } else if (maxTime === soundBTime) {
                     soundB.play();
                     aButton.disabled = false;
                     bButton.disabled = true;
                     cButton.disabled = false;
                     playButton.innerHTML = pauseIcon;
+
+                    //Change B button style
+                    player.querySelectorAll('.b__button').forEach((btn) => {
+                        btn.style.background = '#c7daff';
+                        btn.style.color = '#2118a3';
+                        btn.style.fontWeight = 'bold';
+                        btn.style.border = '2px solid #2118a3';
+                    });
                 } else {
                     soundC.play();
                     aButton.disabled = false;
                     bButton.disabled = false;
                     cButton.disabled = true;
                     playButton.innerHTML = pauseIcon;
+
+                    //Change C button style
+                    player.querySelectorAll('.c__button').forEach((btn) => {
+                        btn.style.background = '#c7daff';
+                        btn.style.color = '#2118a3';
+                        btn.style.fontWeight = 'bold';
+                        btn.style.border = '2px solid #2118a3';
+                    });
                 }
                 stopButton.disabled = false;
             } else {
@@ -145,8 +164,19 @@ function initializePlayers(players) {
             aButton.disabled = true;
             bButton.disabled = false;
             cButton.disabled = false;
-            //player.style.background = '#fff4e5';
 
+            //Button is now disabled. Change style
+            player.querySelectorAll('.ab__button:disabled').forEach((btn) => {
+                btn.style.background = '#c7daff';
+                btn.style.color = '#2118a3';
+                btn.style.fontWeight = 'bold';
+                btn.style.border = '2px solid #2118a3';
+            });
+
+            //Change font color of the rest of buttons
+            player.querySelectorAll('.b__button, .c__button').forEach((btn) => {
+                btn.style.color = '#f5f5f5';
+            });
 
             stopButton.disabled = false;
             let currentTime = Math.max(soundA.currentTime, soundB.currentTime, soundC.currentTime);
@@ -166,7 +196,19 @@ function initializePlayers(players) {
             bButton.disabled = true;
             aButton.disabled = false;
             cButton.disabled = false;
-            //player.style.background = '#e6fce9';
+
+            //Button is now disabled. Change style
+            player.querySelectorAll('.ab__button:disabled').forEach((btn) => {
+                btn.style.background = '#c7daff';
+                btn.style.color = '#2118a3';
+                btn.style.fontWeight = 'bold';
+                btn.style.border = '2px solid #2118a3';
+            });
+
+            //Change font color of the rest of buttons
+            player.querySelectorAll('.a__button, .c__button').forEach((btn) => {
+               btn.style.color = '#f5f5f5';
+            });
 
             stopButton.disabled = false;
             let currentTime = Math.max(soundA.currentTime, soundB.currentTime, soundC.currentTime);
@@ -186,7 +228,19 @@ function initializePlayers(players) {
             cButton.disabled = true;
             aButton.disabled = false;
             bButton.disabled = false;
-            //player.style.background = '#dcd9fc';
+
+            //Button is now disabled. Change style
+            player.querySelectorAll('.ab__button:disabled').forEach((btn) => {
+                btn.style.background = '#c7daff';
+                btn.style.color = '#2118a3';
+                btn.style.fontWeight = 'bold';
+                btn.style.border = '2px solid #2118a3';
+            });
+
+            //Change font color of the rest of buttons
+            player.querySelectorAll('.a__button, .b__button').forEach((btn) => {
+                btn.style.color = '#f5f5f5';
+            });
 
             stopButton.disabled = false;
             let currentTime = Math.max(soundA.currentTime, soundB.currentTime, soundC.currentTime);
@@ -253,6 +307,14 @@ function initializePlayers(players) {
             soundB.currentTime = 0;
             soundC.pause();
             soundC.currentTime = 0;
+
+            // Reset all button styles to original CSS values
+            player.querySelectorAll('.a__button, .b__button, .c__button').forEach((btn) => {
+                btn.style.background = '';
+                btn.style.color = '';
+                btn.style.fontWeight = '';
+                btn.style.border = '';
+            });
         };
 
         function pauseAll() {

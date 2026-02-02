@@ -5,6 +5,12 @@
 {{- else }} {{/* if not profileMode */}}
 
 {{- if not .IsHome | and .Title }}
+
+{{ $customCSS := resources.Get "css/common/mix-master-portfolio.css" }}
+{{ if $customCSS }}
+<link rel="stylesheet" href="{{ $customCSS.RelPermalink }}">
+{{ end }}
+
 <header class="page-header">
     {{- partial "breadcrumbs.html" . }}
     <h1>
