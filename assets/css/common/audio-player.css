@@ -99,72 +99,71 @@ body {
 }
 
 .player__wrapper {
+    border: 1px solid var(--border);
     display: inline-grid;
-    border-radius: 50px;
-    background: rgb(245, 245, 245);
-    box-shadow: 20px 20px 37px #cdcdcd, -20px -20px 37px #ffffff;
-    padding: 4vh 5.5vw 4.5vh 5.5vw;
-    max-width: 500px;
-    justify-content: center;
-    align-items: center;
-    align-self: center;
-    margin: 20px 2vw;
+    border-radius: var(--radius);
+    background: var(--code-bg);
+    padding: 20px 10px 20px 10px;
+    width: 100%;
 }
 
 .ab__controls {
     display: grid;
     align-content: center;
     align-items: stretch;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, auto);
     justify-content: center;
     justify-items: center;
     width: 100%;
+    gap: 0.5rem;
 }
 
 button {
     font-size: 1.3rem;
     text-transform: uppercase;
     border: none;
-    width: 5rem;
+    width: 100%;
     padding: 0.75rem;
-    border-radius: 12px;
+    border-radius: var(--radius);
     background: #e6e6e6;
-    box-shadow: 7px 7px 15px #cdcdcd, -7px -7px 15px #ffffff;
     cursor: pointer;
     transition: all ease-in-out 0.3s;
 }
 
 button:disabled {
     color: #c9c9c9;
-    box-shadow: inset 7px 7px 15px #cdcdcd, inset -7px -7px 15px #ffffff;
     transition: all ease-in-out 0.3s;
 }
 
 button:disabled:hover {
     color: #c9c9c9;
-    box-shadow: inset 5px 5px 15px #cdcdcd, inset -5px -5px 15px #ffffff;
 }
 
 button:hover {
-    box-shadow: 4px 4px 15px #cdcdcd, -4px -4px 15px #ffffff;
 }
 
 .a__button, .b__button, .c__button {
+    border: 0.5px solid var(--code-bg);;
+    border-radius: 4px;
     font-size: 0.8rem;
-    min-width: 6.5rem;
+    width: max-content;
+    min-width: 80%;
 }
 
 .play__button {
+    border: 1px solid var(--border);
+    width: 5rem;
     color: rgb(108 98 255);
     justify-self: self-end;
 }
 
 .play__button:disabled:hover {
     color: #9992ff;
-    box-shadow: inset 5px 5px 15px #cdcdcd, inset -5px -5px 15px #ffffff;
 }
 
 .stop__button {
+    border: 1px solid var(--border);
     width: 5rem;
     color: rgb(108 98 255);
     justify-self: self-start;
@@ -172,7 +171,6 @@ button:hover {
 
 .stop__button:disabled:hover {
     color: #9992ff;
-    box-shadow: inset 5px 5px 15px #cdcdcd, inset -5px -5px 15px #ffffff;
 }
 
 .stop__button:disabled {
@@ -194,7 +192,6 @@ button:hover {
     margin-bottom: 2.4rem;
     border-radius: 10px;
     background: #e6e6e6;
-    box-shadow: inset 7px 7px 15px #cdcdcd, inset -7px -7px 15px #ffffff;
     cursor: pointer;
     align-self: center;
     overflow: hidden;

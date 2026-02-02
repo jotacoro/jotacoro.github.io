@@ -1,4 +1,9 @@
 let players = document.querySelectorAll('.player__wrapper');
+const colorSchemes = {
+    a: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+    b: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+    c: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)'
+};
 
 initializePlayers(players);
 
@@ -140,6 +145,8 @@ function initializePlayers(players) {
             aButton.disabled = true;
             bButton.disabled = false;
             cButton.disabled = false;
+            //player.style.background = '#fff4e5';
+
 
             stopButton.disabled = false;
             let currentTime = Math.max(soundA.currentTime, soundB.currentTime, soundC.currentTime);
@@ -159,6 +166,7 @@ function initializePlayers(players) {
             bButton.disabled = true;
             aButton.disabled = false;
             cButton.disabled = false;
+            //player.style.background = '#e6fce9';
 
             stopButton.disabled = false;
             let currentTime = Math.max(soundA.currentTime, soundB.currentTime, soundC.currentTime);
@@ -178,6 +186,7 @@ function initializePlayers(players) {
             cButton.disabled = true;
             aButton.disabled = false;
             bButton.disabled = false;
+            //player.style.background = '#dcd9fc';
 
             stopButton.disabled = false;
             let currentTime = Math.max(soundA.currentTime, soundB.currentTime, soundC.currentTime);
