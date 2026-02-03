@@ -45,6 +45,7 @@ function initializePlayers(players) {
                 navigator.userAgent
             )
         ) {
+            aButton.disabled = false;
             playButton.disabled = false;
         }
 
