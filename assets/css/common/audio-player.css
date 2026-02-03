@@ -2,6 +2,8 @@
     border: 1px solid var(--border);
     display: inline-grid;
     border-radius: var(--radius);
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
     background: #edf5ff;
     padding: 20px 10px 20px 10px;
     width: 100%;
