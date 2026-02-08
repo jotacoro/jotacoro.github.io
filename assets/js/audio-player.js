@@ -32,12 +32,10 @@ function initializePlayers(players) {
         const cButton = player.querySelector('.c__button');
         const playButton = player.querySelector('.play__button');
         const stopButton = player.querySelector('.stop__button');
-        const progressBar = player.querySelector('.progress__bar');
         const progressFill = player.querySelector('.progress__fill');
 
         const playIcon = '<i class="fa-solid fa-play"></i>';
         const pauseIcon = '<i class="fa-solid fa-pause"></i>';
-        const stopIcon = '<i class="fa-solid fa-stop"></i>';
 
         //Check for mobile to enable audio playback without waiting for download status.
         if (
