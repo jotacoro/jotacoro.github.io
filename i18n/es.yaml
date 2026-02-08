@@ -14,4 +14,4 @@
   translation: "Mix/master, igualado en volumen a la referencia del cliente para una comparación justa."
 
 - id: audio_player_tooltip_c
-  translation: "Mix/master con niveles de loudness óptimos."
+  translation: "Mix/master con volumen óptimo."
