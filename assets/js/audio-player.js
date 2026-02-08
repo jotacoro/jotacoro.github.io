@@ -32,12 +32,10 @@ function initializePlayers(players) {
         const cButton = player.querySelector('.c__button');
         const playButton = player.querySelector('.play__button');
         const stopButton = player.querySelector('.stop__button');
-        const progressBar = player.querySelector('.progress__bar');
         const progressFill = player.querySelector('.progress__fill');
 
         const playIcon = '<i class="fa-solid fa-play"></i>';
         const pauseIcon = '<i class="fa-solid fa-pause"></i>';
-        const stopIcon = '<i class="fa-solid fa-stop"></i>';
 
         //Check for mobile to enable audio playback without waiting for download status.
         if (
@@ -344,5 +342,62 @@ function initializePlayers(players) {
                 ((soundC.currentTime / soundC.duration) * 100 || 0) + '%';
             requestAnimationFrame(stepC);
         }
+
+        // Tooltip functionality
+        const tooltipWrappers = player.querySelectorAll('.tooltip__wrapper');
+
+        tooltipWrappers.forEach((wrapper) => {
+            const icon = wrapper.querySelector('.tooltip__icon');
+            const tooltipText = wrapper.querySelector('.tooltip__text');
+
+            // Function to check and adjust tooltip position to stay within player bounds
+            const adjustTooltipPosition = () => {
+                const playerRect = player.getBoundingClientRect();
+                const tooltipRect = tooltipText.getBoundingClientRect();
+
+                // Check if tooltip overflows to the right of player wrapper
+                if (tooltipRect.right > playerRect.right - 10) {
+                    // Position tooltip to the left of the icon instead
+                    tooltipText.style.left = 'auto';
+                    tooltipText.style.right = 'calc(100% + 0.5rem)';
+                }
+            };
+
+            // Toggle tooltip on click/tap
+            icon.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevent event bubbling
+
+                // Close other tooltips
+                tooltipWrappers.forEach((otherWrapper) => {
+                    if (otherWrapper !== wrapper) {
+                        otherWrapper.classList.remove('active');
+                    }
+                });
+
+                // Toggle current tooltip
+                wrapper.classList.toggle('active');
+
+                // Adjust position after showing to prevent overflow
+                if (wrapper.classList.contains('active')) {
+                    setTimeout(adjustTooltipPosition, 10);
+                }
+            });
+
+            // Also check position on hover for desktop
+            if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+                wrapper.addEventListener('mouseenter', () => {
+                    setTimeout(adjustTooltipPosition, 10);
+                });
+            }
+        });
+
+        // Close tooltips when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.tooltip__wrapper')) {
+                tooltipWrappers.forEach((wrapper) => {
+                    wrapper.classList.remove('active');
+                });
+            }
+        });
     });
 }
