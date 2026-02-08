@@ -8,9 +8,27 @@
         <div class="progress__bar progress__fill"></div>
     </div>
     <div class="ab__controls">
-        <button class="ab__button a__button" disabled="true">{{ i18n "audio_player_button_a" }}</button>
-        <button class="ab__button b__button" disabled="true">{{ i18n "audio_player_button_b" }}</button>
-        <button class="ab__button c__button" disabled="true">{{ i18n "audio_player_button_c" }}</button>
+        <div class="button__with__tooltip">
+            <button class="ab__button a__button" disabled="true">{{ i18n "audio_player_button_a" }}</button>
+            <div class="tooltip__wrapper">
+                <i class="fa-solid fa-circle-info tooltip__icon"></i>
+                <span class="tooltip__text">{{ i18n "audio_player_tooltip_a" }}</span>
+            </div>
+        </div>
+        <div class="button__with__tooltip">
+            <button class="ab__button b__button" disabled="true">{{ i18n "audio_player_button_b" }}</button>
+            <div class="tooltip__wrapper">
+                <i class="fa-solid fa-circle-info tooltip__icon"></i>
+                <span class="tooltip__text">{{ i18n "audio_player_tooltip_b" }}</span>
+            </div>
+        </div>
+        <div class="button__with__tooltip">
+            <button class="ab__button c__button" disabled="true">{{ i18n "audio_player_button_c" }}</button>
+            <div class="tooltip__wrapper">
+                <i class="fa-solid fa-circle-info tooltip__icon"></i>
+                <span class="tooltip__text">{{ i18n "audio_player_tooltip_c" }}</span>
+            </div>
+        </div>
     </div>
     <div class="play__stop__controls">
         <button class="play__pause__button play__button" disabled="true">

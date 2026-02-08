@@ -6,3 +6,12 @@
 
 - id: audio_player_button_c
   translation: "Mix/Master"
+
+- id: audio_player_tooltip_a
+  translation: "Sample of the original audio provided by the customer as reference."
+
+- id: audio_player_tooltip_b
+  translation: "Mix/master version, matching the loudness of the client reference for a fair comparison."
+
+- id: audio_player_tooltip_c
+  translation: "Mix/master version at optimal loudness levels."

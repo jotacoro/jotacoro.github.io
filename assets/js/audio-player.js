@@ -344,5 +344,62 @@ function initializePlayers(players) {
                 ((soundC.currentTime / soundC.duration) * 100 || 0) + '%';
             requestAnimationFrame(stepC);
         }
+
+        // Tooltip functionality
+        const tooltipWrappers = player.querySelectorAll('.tooltip__wrapper');
+
+        tooltipWrappers.forEach((wrapper) => {
+            const icon = wrapper.querySelector('.tooltip__icon');
+            const tooltipText = wrapper.querySelector('.tooltip__text');
+
+            // Function to check and adjust tooltip position to stay within player bounds
+            const adjustTooltipPosition = () => {
+                const playerRect = player.getBoundingClientRect();
+                const tooltipRect = tooltipText.getBoundingClientRect();
+
+                // Check if tooltip overflows to the right of player wrapper
+                if (tooltipRect.right > playerRect.right - 10) {
+                    // Position tooltip to the left of the icon instead
+                    tooltipText.style.left = 'auto';
+                    tooltipText.style.right = 'calc(100% + 0.5rem)';
+                }
+            };
+
+            // Toggle tooltip on click/tap
+            icon.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevent event bubbling
+
+                // Close other tooltips
+                tooltipWrappers.forEach((otherWrapper) => {
+                    if (otherWrapper !== wrapper) {
+                        otherWrapper.classList.remove('active');
+                    }
+                });
+
+                // Toggle current tooltip
+                wrapper.classList.toggle('active');
+
+                // Adjust position after showing to prevent overflow
+                if (wrapper.classList.contains('active')) {
+                    setTimeout(adjustTooltipPosition, 10);
+                }
+            });
+
+            // Also check position on hover for desktop
+            if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+                wrapper.addEventListener('mouseenter', () => {
+                    setTimeout(adjustTooltipPosition, 10);
+                });
+            }
+        });
+
+        // Close tooltips when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.tooltip__wrapper')) {
+                tooltipWrappers.forEach((wrapper) => {
+                    wrapper.classList.remove('active');
+                });
+            }
+        });
     });
 }
