@@ -4,6 +4,7 @@ date: 2025-11-14T00:00:00
 type: page
 description: Mix/Master for a cumbia track.
 topic: blog, hugo, github
+songImageUrl: "/els-dies-que-passen.jpeg"
 clientReferenceUrl: "elsDiesQuePassen_clientReference.mp3"
 masterTrimUrl: "elsDiesQuePassen_Master_MatchClientReferenceGain.mp3"
 masterUrl: "elsDiesQuePassen_Master.mp3"

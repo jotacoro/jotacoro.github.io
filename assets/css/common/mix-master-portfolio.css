@@ -1,11 +1,31 @@
-.post-entry {
-    padding: 0 0 0 0;
+.page-header {
+    margin-bottom: clamp(1.5rem, 3vw, 2.25rem);
 }
 
-.entry-header {
-    padding: 0 20px 0 20px;
+.post-entry {
+    padding: 0;
+    overflow: hidden;
+    border-color: #ead8a6;
+    box-shadow: 0 8px 10px rgba(58, 77, 85, 0.35);
 }
 
 .song-notes-container {
-    padding: 0 20px 0 20px;
+    padding: 0 1.25rem;
+    text-align: center;
+}
+
+.song-notes-list {
+    display: block;
+    margin: 0.55rem auto 0;
+    padding: 0;
+    list-style: none !important;
+    text-indent: 0;
+}
+
+.song-note {
+    text-indent: 0;
+}
+
+.social-icons {
+    padding: 1rem 1rem 1.35rem;
 }

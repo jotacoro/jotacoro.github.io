@@ -1,41 +1,43 @@
+{{- $params := .Params -}}
+{{- $image := "/home.png" -}}
+{{- with $params.cover }}{{ with .image }}{{ $image = . }}{{ end }}{{ end -}}
+{{- with $params.songImageUrl }}{{ $image = . }}{{ end -}}
+{{- $imageURL := $image | relURL -}}
+{{- if (urls.Parse $image).IsAbs }}{{ $imageURL = $image }}{{ end -}}
+
 <div
         class="player__wrapper"
-        data-audio-a="/{{.clientReferenceUrl}}"
-        data-audio-b="/{{.masterTrimUrl}}"
-        data-audio-c="/{{.masterUrl}}"
+        data-audio-a="{{ $params.clientReferenceUrl | relURL }}"
+        data-audio-b="{{ $params.masterTrimUrl | relURL }}"
+        data-audio-c="{{ $params.masterUrl | relURL }}"
+        data-version-a='{{ i18n "audio_player_button_a" }}'
+        data-version-b='{{ i18n "audio_player_button_b" }}'
+        data-version-c='{{ i18n "audio_player_button_c" }}'
+        data-tooltip-a='{{ i18n "audio_player_tooltip_a" }}'
+        data-tooltip-b='{{ i18n "audio_player_tooltip_b" }}'
+        data-tooltip-c='{{ i18n "audio_player_tooltip_c" }}'
 >
-    <div class="progress__container progress">
+    <h2 class="player__title">{{ .Title }}</h2>
+    <p class="player__version" aria-live="polite">&nbsp;</p>
+
+    <div class="player__artwork" aria-live="polite">
+        <img class="player__image" src="{{ $imageURL }}" alt="{{ .Title }}">
+        <span class="player__overlay" aria-hidden="true"></span>
+    </div>
+
+    <div class="progress__container progress" aria-label="Audio progress">
         <div class="progress__bar progress__fill"></div>
     </div>
-    <div class="ab__controls">
-        <div class="button__with__tooltip">
-            <button class="ab__button a__button" disabled="disabled">{{ i18n "audio_player_button_a" }}</button>
-            <div class="tooltip__wrapper">
-                <i class="fa-solid fa-circle-info tooltip__icon"></i>
-                <span class="tooltip__text">{{ i18n "audio_player_tooltip_a" }}</span>
-            </div>
-        </div>
-        <div class="button__with__tooltip">
-            <button class="ab__button b__button" disabled="disabled">{{ i18n "audio_player_button_b" }}</button>
-            <div class="tooltip__wrapper">
-                <i class="fa-solid fa-circle-info tooltip__icon"></i>
-                <span class="tooltip__text">{{ i18n "audio_player_tooltip_b" }}</span>
-            </div>
-        </div>
-        <div class="button__with__tooltip">
-            <button class="ab__button c__button" disabled="disabled">{{ i18n "audio_player_button_c" }}</button>
-            <div class="tooltip__wrapper">
-                <i class="fa-solid fa-circle-info tooltip__icon"></i>
-                <span class="tooltip__text">{{ i18n "audio_player_tooltip_c" }}</span>
-            </div>
-        </div>
-    </div>
-    <div class="play__stop__controls">
-        <button class="play__pause__button play__button" disabled="disabled">
+
+    <div class="player__controls">
+        <button class="player__control previous__button" type="button" aria-label="Previous audio version" disabled="disabled">
+            <i class="fa-solid fa-backward-step"></i>
+        </button>
+        <button class="player__control play__button" type="button" aria-label="Play audio">
             <i class="fa-solid fa-play"></i>
         </button>
-        <button class="play__pause__button stop__button" disabled="disabled">
-            <i class="fa-solid fa-stop"></i>
+        <button class="player__control next__button" type="button" aria-label="Next audio version" disabled="disabled">
+            <i class="fa-solid fa-forward-step"></i>
         </button>
     </div>
 </div>
