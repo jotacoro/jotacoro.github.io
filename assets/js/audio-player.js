@@ -6,6 +6,7 @@ function initializePlayers(players) {
     const instances = [];
     const playIcon = '<i class="fa-solid fa-play"></i>';
     const pauseIcon = '<i class="fa-solid fa-pause"></i>';
+    const loadingIcon = '<i class="fa-solid fa-spinner"></i>';
 
     players.forEach((player) => {
         const playButton = player.querySelector('.play__button');
@@ -39,7 +40,7 @@ function initializePlayers(players) {
         ].map((version) => {
             const audio = document.createElement('audio');
             audio.src = version.src;
-            audio.preload = 'metadata';
+            audio.preload = 'none';
             audio.setAttribute('hidden', 'true');
             document.body.append(audio);
 
@@ -52,8 +53,12 @@ function initializePlayers(players) {
         let currentVersionIndex = 0;
         let hasStarted = false;
         let isPlaying = false;
+        let isLoading = false;
+        let hasWarmedAlternateVersions = false;
         let hasCompletedPlayback = false;
         let animationFrameId = null;
+        let playRequestId = 0;
+        const requestedPreloads = new WeakMap();
 
         const instance = {
             pauseFromOutside() {
@@ -69,7 +74,7 @@ function initializePlayers(players) {
         updatePlayerState();
 
         playButton.addEventListener('click', () => {
-            if (isPlaying) {
+            if (isPlaying || isLoading) {
                 pauseCurrentAudio();
                 updatePlayerState();
                 return;
@@ -118,8 +123,27 @@ function initializePlayers(players) {
         versions.forEach(({ audio }) => {
             audio.addEventListener('timeupdate', updateProgress);
             audio.addEventListener('loadedmetadata', updateProgress);
+            audio.addEventListener('waiting', () => {
+                if (audio === getActiveVersion().audio && (isPlaying || isLoading)) {
+                    setLoading(true);
+                }
+            });
+            audio.addEventListener('playing', () => {
+                if (audio === getActiveVersion().audio) {
+                    isPlaying = true;
+                    setLoading(false);
+                    updatePlayerState();
+                    startProgressAnimation();
+                }
+            });
+            audio.addEventListener('canplay', () => {
+                if (audio === getActiveVersion().audio) {
+                    setLoading(false);
+                }
+            });
             audio.addEventListener('ended', () => {
                 isPlaying = false;
+                setLoading(false);
                 hasCompletedPlayback = true;
                 stopProgressAnimation();
                 updateProgress();
@@ -134,6 +158,9 @@ function initializePlayers(players) {
         function playCurrentVersion() {
             const activeVersion = getActiveVersion();
             const activeAudio = activeVersion.audio;
+            const requestedTime = activeAudio.currentTime || 0;
+            const requestId = playRequestId + 1;
+            playRequestId = requestId;
 
             pauseOtherPlayers();
             hasStarted = true;
@@ -145,14 +172,35 @@ function initializePlayers(players) {
                 setAllAudioTimes(0);
             }
 
-            activeAudio.play()
+            prepareAudio(activeAudio, 'auto');
+
+            if (requestedTime > 0) {
+                setAudioTime(activeAudio, requestedTime);
+            }
+
+            setLoading(true);
+
+            const playPromise = activeAudio.play();
+
+            Promise.resolve(playPromise)
                 .then(() => {
+                    if (requestId !== playRequestId) {
+                        return;
+                    }
+
                     isPlaying = true;
+                    setLoading(false);
                     updatePlayerState();
                     startProgressAnimation();
+                    warmUpAlternateVersions();
                 })
                 .catch(() => {
+                    if (requestId !== playRequestId) {
+                        return;
+                    }
+
                     isPlaying = false;
+                    setLoading(false);
                     updatePlayerState();
                 });
         }
@@ -162,7 +210,7 @@ function initializePlayers(players) {
                 return;
             }
 
-            const wasPlaying = isPlaying;
+            const shouldResume = isPlaying || isLoading;
             const currentTime = getCurrentPlaybackTime();
 
             pauseCurrentAudio();
@@ -171,7 +219,7 @@ function initializePlayers(players) {
             setAllAudioTimes(currentTime);
             updateProgress();
 
-            if (wasPlaying) {
+            if (shouldResume) {
                 playCurrentVersion();
                 return;
             }
@@ -188,17 +236,59 @@ function initializePlayers(players) {
         }
 
         function pauseCurrentAudio() {
+            playRequestId += 1;
             versions.forEach(({ audio }) => audio.pause());
             isPlaying = false;
+            setLoading(false);
             stopProgressAnimation();
+        }
+
+        function setLoading(loading) {
+            isLoading = loading;
+            updatePlayerState();
+        }
+
+        function prepareAudio(audio, preload = 'auto') {
+            const previousPreload = requestedPreloads.get(audio);
+
+            if (audio.preload !== preload) {
+                audio.preload = preload;
+            }
+
+            if (previousPreload !== preload) {
+                audio.load();
+                requestedPreloads.set(audio, preload);
+            }
+        }
+
+        function warmUpAlternateVersions() {
+            if (hasWarmedAlternateVersions) {
+                return;
+            }
+
+            hasWarmedAlternateVersions = true;
+
+            window.setTimeout(() => {
+                versions.forEach(({ audio }, index) => {
+                    if (index !== currentVersionIndex) {
+                        prepareAudio(audio, shouldAvoidBackgroundPreload() ? 'metadata' : 'auto');
+                    }
+                });
+            }, 250);
+        }
+
+        function shouldAvoidBackgroundPreload() {
+            return Boolean(navigator.connection && navigator.connection.saveData);
         }
 
         function updatePlayerState() {
             const activeVersion = getActiveVersion();
 
-            playButton.innerHTML = isPlaying ? pauseIcon : playIcon;
-            playButton.setAttribute('aria-label', isPlaying ? 'Pause audio' : 'Play audio');
+            playButton.innerHTML = isLoading ? loadingIcon : isPlaying ? pauseIcon : playIcon;
+            playButton.setAttribute('aria-label', isLoading || isPlaying ? 'Pause audio' : 'Play audio');
+            player.setAttribute('aria-busy', isLoading ? 'true' : 'false');
             player.classList.toggle('is-playing', isPlaying);
+            player.classList.toggle('is-loading', isLoading);
 
             if (versionText) {
                 versionText.innerHTML = hasStarted ? activeVersion.label : '&nbsp;';
@@ -247,13 +337,29 @@ function initializePlayers(players) {
 
         function setAllAudioTimes(time) {
             versions.forEach(({ audio }) => {
-                if (!Number.isFinite(audio.duration) || audio.duration <= 0) {
-                    audio.currentTime = time;
+                const nextTime = !Number.isFinite(audio.duration) || audio.duration <= 0
+                    ? time
+                    : Math.min(time, Math.max(audio.duration - 0.05, 0));
+
+                if (!Number.isFinite(nextTime) || nextTime < 0) {
                     return;
                 }
 
-                audio.currentTime = Math.min(time, Math.max(audio.duration - 0.05, 0));
+                if (!Number.isFinite(audio.duration) || audio.duration <= 0) {
+                    setAudioTime(audio, nextTime);
+                    return;
+                }
+
+                setAudioTime(audio, nextTime);
             });
+        }
+
+        function setAudioTime(audio, time) {
+            try {
+                audio.currentTime = time;
+            } catch (error) {
+                // Some browsers reject early seeks before metadata is available.
+            }
         }
 
         function isAudioAtEnd(audio) {

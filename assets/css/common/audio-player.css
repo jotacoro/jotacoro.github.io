@@ -45,7 +45,8 @@
     transition: filter 0.25s ease, transform 0.25s ease;
 }
 
-.player__wrapper.is-playing .player__image {
+.player__wrapper.is-playing .player__image,
+.player__wrapper.is-loading .player__image {
     filter: blur(5px) brightness(0.78);
     transform: scale(1.08);
 }
@@ -73,7 +74,8 @@
     transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
-.player__wrapper.is-playing .player__overlay {
+.player__wrapper.is-playing .player__overlay,
+.player__wrapper.is-loading .player__overlay {
     opacity: 1;
     transform: scale(1);
 }
@@ -140,6 +142,20 @@
 
 .play__button {
     font-size: 2.55rem;
+}
+
+.player__wrapper.is-loading .play__button i {
+    animation: player-spin 0.8s linear infinite;
+}
+
+@keyframes player-spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 @media (max-width: 480px) {
