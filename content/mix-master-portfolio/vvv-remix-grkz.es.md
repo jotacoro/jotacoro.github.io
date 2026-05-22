@@ -4,11 +4,12 @@ date: 2025-11-14T00:00:00
 type: page
 description: Remaster para un remix de VVV [Trippin'you].
 topic: blog, hugo, github
+songImageUrl: "/angel-historia-grkzk-remix.jpeg"
 clientReferenceUrl: "vvv_angelDeLaHistoriaRemix_clientReference.mp3"
 masterTrimUrl: "vvv_angelDeLaHistoriaRemix_Master_MatchClientReferenceGain.mp3"
 masterUrl: "vvv_angelDeLaHistoriaRemix_Master.mp3"
 songNotes: [
-  "Remaster para [grkzk](https://www.grkzk.com/) de un remix de VVV [Trippin'you].",
+  "Remaster para [grkzk](https://www.grkzk.com/) de su remix para VVV [Trippin'you].",
   "Master original disponible en Soundcloud.",
 ]
 socialIcons:

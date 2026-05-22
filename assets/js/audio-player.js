@@ -1,403 +1,265 @@
-let players = document.querySelectorAll('.player__wrapper');
+const players = document.querySelectorAll('.player__wrapper');
 
 initializePlayers(players);
 
 function initializePlayers(players) {
+    const instances = [];
+    const playIcon = '<i class="fa-solid fa-play"></i>';
+    const pauseIcon = '<i class="fa-solid fa-pause"></i>';
+
     players.forEach((player) => {
-        //Set up audio elements
-        var soundA = document.createElement('audio');
-        //Set audio A src here
-        soundA.src = player.getAttribute('data-audio-a');
-        soundA.preload = 'auto';
-        soundA.setAttribute('hidden', 'true');
-        document.body.append(soundA);
-
-        var soundB = document.createElement('audio');
-        //Set audio B src here
-        soundB.src = player.getAttribute('data-audio-b');
-        soundB.preload = 'auto';
-        soundB.setAttribute('hidden', 'true');
-        document.body.append(soundB);
-
-        var soundC = document.createElement('audio');
-        //Set audio C src here
-        soundC.src = player.getAttribute('data-audio-c');
-        soundC.preload = 'auto';
-        soundC.setAttribute('hidden', 'true');
-        document.body.append(soundC);
-
-        //Get button elements
-        const aButton = player.querySelector('.a__button');
-        const bButton = player.querySelector('.b__button');
-        const cButton = player.querySelector('.c__button');
         const playButton = player.querySelector('.play__button');
-        const stopButton = player.querySelector('.stop__button');
-        const progressFill = player.querySelector('.progress__fill');
-
-        const playIcon = '<i class="fa-solid fa-play"></i>';
-        const pauseIcon = '<i class="fa-solid fa-pause"></i>';
-
-        //Check for mobile to enable audio playback without waiting for download status.
-        if (
-            /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-                navigator.userAgent
-            )
-        ) {
-            aButton.disabled = false;
-            playButton.disabled = false;
-        }
-
-        //Default loading state for each sound
-        var soundAReady = false;
-        var soundBReady = false;
-        var soundCReady = false;
-
-        //When audio can play through (loaded), run the function to enable buttons
-        //The canplaythrough event will fire every time the audio switches, so the !soundA/BReady prevents additional checks
-        soundA.oncanplaythrough = function () {
-            if (!soundAReady) {
-                soundAReady = true;
-                audioIsReady();
-            }
-        };
-        soundB.oncanplaythrough = function () {
-            if (!soundBReady) {
-                soundBReady = true;
-                audioIsReady();
-            }
-        };
-
-        soundC.oncanplaythrough = function () {
-            if (!soundCReady) {
-                soundCReady = true;
-                audioIsReady();
-            }
-        };
-
-        // Check if both A & B are ready and enable the correct buttons
-        function audioIsReady() {
-            if (soundAReady && soundBReady && soundCReady) {
-                console.log('...audio loaded!');
-                aButton.disabled = false;
-                playButton.disabled = false;
-            } else {
-                console.log('Audio loading...');
-            }
-        }
-
+        const previousButton = player.querySelector('.previous__button');
+        const nextButton = player.querySelector('.next__button');
         const progress = player.querySelector('.progress');
-        // Listen for click on entire progress bar div (to allow skipping ahead)
-        progress.addEventListener('click', function (event) {
-            // Get X coordinate of click in div
-            var rect = this.getBoundingClientRect();
-            // Convert click position to percentage value
-            var percentage = (event.clientX - rect.left) / this.offsetWidth;
-            // Seek to the percentage converted to seconds
-            soundA.currentTime = percentage * soundA.duration;
-            soundB.currentTime = percentage * soundB.duration;
-            soundC.currentTime = percentage * soundC.duration;
-        });
+        const progressFill = player.querySelector('.progress__fill');
+        const versionText = player.querySelector('.player__version');
+        const overlay = player.querySelector('.player__overlay');
 
-        //Play/Stop correct audio and toggle A/B, Play/Pause, and Stop buttons
-        function playPause() {
-            if (soundA.paused && soundB.paused && soundC.paused) {
-                let soundATime = soundA.currentTime;
-                let soundBTime = soundB.currentTime;
-                let soundCTime = soundC.currentTime;
-                let maxTime = Math.max(soundATime, soundBTime, soundCTime);
-                if (maxTime === soundATime) {
-                    soundA.play();
-                    aButton.disabled = true;
-                    bButton.disabled = false;
-                    cButton.disabled = false;
-                    playButton.innerHTML = pauseIcon;
-
-                    //Change A button style
-                    player.querySelectorAll('.a__button').forEach((btn) => {
-                        btn.style.background = '#c7daff';
-                        btn.style.color = '#2118a3';
-                        btn.style.fontWeight = 'bold';
-                        btn.style.border = '2px solid #2118a3';
-                    });
-                } else if (maxTime === soundBTime) {
-                    soundB.play();
-                    aButton.disabled = false;
-                    bButton.disabled = true;
-                    cButton.disabled = false;
-                    playButton.innerHTML = pauseIcon;
-
-                    //Change B button style
-                    player.querySelectorAll('.b__button').forEach((btn) => {
-                        btn.style.background = '#c7daff';
-                        btn.style.color = '#2118a3';
-                        btn.style.fontWeight = 'bold';
-                        btn.style.border = '2px solid #2118a3';
-                    });
-                } else {
-                    soundC.play();
-                    aButton.disabled = false;
-                    bButton.disabled = false;
-                    cButton.disabled = true;
-                    playButton.innerHTML = pauseIcon;
-
-                    //Change C button style
-                    player.querySelectorAll('.c__button').forEach((btn) => {
-                        btn.style.background = '#c7daff';
-                        btn.style.color = '#2118a3';
-                        btn.style.fontWeight = 'bold';
-                        btn.style.border = '2px solid #2118a3';
-                    });
-                }
-                stopButton.disabled = false;
-            } else {
-                playButton.innerHTML = playIcon;
-                soundA.pause();
-                soundB.pause();
-                soundC.pause();
-            }
+        if (!playButton || !previousButton || !nextButton || !progress || !progressFill) {
+            return;
         }
 
-        aButton.addEventListener('click', (e) => {
-            pauseAll();
-            playButton.innerHTML = pauseIcon;
-            aButton.disabled = true;
-            bButton.disabled = false;
-            cButton.disabled = false;
+        const versions = [
+            {
+                src: player.getAttribute('data-audio-a'),
+                label: player.getAttribute('data-version-a'),
+                tooltip: player.getAttribute('data-tooltip-a'),
+            },
+            {
+                src: player.getAttribute('data-audio-b'),
+                label: player.getAttribute('data-version-b'),
+                tooltip: player.getAttribute('data-tooltip-b'),
+            },
+            {
+                src: player.getAttribute('data-audio-c'),
+                label: player.getAttribute('data-version-c'),
+                tooltip: player.getAttribute('data-tooltip-c'),
+            },
+        ].map((version) => {
+            const audio = document.createElement('audio');
+            audio.src = version.src;
+            audio.preload = 'metadata';
+            audio.setAttribute('hidden', 'true');
+            document.body.append(audio);
 
-            //Button is now disabled. Change style
-            player.querySelectorAll('.ab__button:disabled').forEach((btn) => {
-                btn.style.background = '#c7daff';
-                btn.style.color = '#2118a3';
-                btn.style.fontWeight = 'bold';
-                btn.style.border = '2px solid #2118a3';
-            });
-
-            //Change font color of the rest of buttons
-            player.querySelectorAll('.b__button, .c__button').forEach((btn) => {
-                btn.style.color = '#f5f5f5';
-            });
-
-            stopButton.disabled = false;
-            let currentTime = Math.max(soundA.currentTime, soundB.currentTime, soundC.currentTime);
-            if (currentTime > 0) {
-                soundA.currentTime = currentTime;
-                soundA.play();
-                soundB.pause();
-                soundC.pause();
-            } else {
-                soundA.play();
-            }
+            return {
+                ...version,
+                audio,
+            };
         });
 
-        bButton.addEventListener('click', (e) => {
-            pauseAll();
-            playButton.innerHTML = pauseIcon;
-            bButton.disabled = true;
-            aButton.disabled = false;
-            cButton.disabled = false;
+        let currentVersionIndex = 0;
+        let hasStarted = false;
+        let isPlaying = false;
+        let hasCompletedPlayback = false;
+        let animationFrameId = null;
 
-            //Button is now disabled. Change style
-            player.querySelectorAll('.ab__button:disabled').forEach((btn) => {
-                btn.style.background = '#c7daff';
-                btn.style.color = '#2118a3';
-                btn.style.fontWeight = 'bold';
-                btn.style.border = '2px solid #2118a3';
-            });
-
-            //Change font color of the rest of buttons
-            player.querySelectorAll('.a__button, .c__button').forEach((btn) => {
-               btn.style.color = '#f5f5f5';
-            });
-
-            stopButton.disabled = false;
-            let currentTime = Math.max(soundA.currentTime, soundB.currentTime, soundC.currentTime);
-            if (currentTime > 0) {
-                soundB.currentTime = currentTime;
-                soundB.play();
-                soundA.pause();
-                soundC.pause();
-            } else {
-                soundB.play();
-            }
-        });
-
-        cButton.addEventListener('click', (e) => {
-            pauseAll();
-            playButton.innerHTML = pauseIcon;
-            cButton.disabled = true;
-            aButton.disabled = false;
-            bButton.disabled = false;
-
-            //Button is now disabled. Change style
-            player.querySelectorAll('.ab__button:disabled').forEach((btn) => {
-                btn.style.background = '#c7daff';
-                btn.style.color = '#2118a3';
-                btn.style.fontWeight = 'bold';
-                btn.style.border = '2px solid #2118a3';
-            });
-
-            //Change font color of the rest of buttons
-            player.querySelectorAll('.a__button, .b__button').forEach((btn) => {
-                btn.style.color = '#f5f5f5';
-            });
-
-            stopButton.disabled = false;
-            let currentTime = Math.max(soundA.currentTime, soundB.currentTime, soundC.currentTime);
-            if (currentTime > 0) {
-                soundC.currentTime = currentTime;
-                soundC.play();
-                soundA.pause();
-                soundB.pause();
-            }
-            soundC.play();
-        });
-
-        playButton.addEventListener('click', (e) => {
-            let allAudio = document.querySelectorAll('audio');
-            let allButtons = document.querySelectorAll('.play__button');
-            for (let i = 0; i < allAudio.length; i++) {
-                if (allAudio[i] !== soundA && allAudio[i] !== soundB && allAudio[i] !== soundC) {
-                    allAudio[i].pause();
-                }
-            }
-            for (let i = 0; i < allButtons.length; i++) {
-                if (allButtons[i] !== playButton) {
-                    allButtons[i].innerHTML = playIcon;
-                }
-            }
-            playPause();
-        });
-
-        stopButton.addEventListener('click', (e) => {
-            stopSounds();
-        });
-
-        soundA.addEventListener('playing', (e) => {
-            console.log('playing a');
-            progressFill.style.width =
-                ((soundA.currentTime / soundA.duration) * 100 || 0) + '%';
-            requestAnimationFrame(stepA);
-        });
-
-        soundB.addEventListener('playing', (e) => {
-            console.log('playing b');
-            progressFill.style.width =
-                ((soundB.currentTime / soundB.duration) * 100 || 0) + '%';
-            requestAnimationFrame(stepB);
-        });
-
-        soundC.addEventListener('playing', (e) => {
-            console.log('playing c');
-            progressFill.style.width =
-                ((soundC.currentTime / soundC.duration) * 100 || 0) + '%';
-            requestAnimationFrame(stepC);
-        });
-
-        const stopSounds = () => {
-            playButton.innerHTML = playIcon;
-            aButton.disabled = false;
-            bButton.disabled = true;
-            cButton.disabled = true;
-            playButton.disabled = false;
-            stopButton.disabled = true;
-            soundA.pause();
-            soundA.currentTime = 0;
-            soundB.pause();
-            soundB.currentTime = 0;
-            soundC.pause();
-            soundC.currentTime = 0;
-
-            // Reset all button styles to original CSS values
-            player.querySelectorAll('.a__button, .b__button, .c__button').forEach((btn) => {
-                btn.style.background = '';
-                btn.style.color = '';
-                btn.style.fontWeight = '';
-                btn.style.border = '';
-            });
+        const instance = {
+            pauseFromOutside() {
+                pauseCurrentAudio();
+                updatePlayerState();
+            },
         };
+        instances.push(instance);
 
-        function pauseAll() {
-            let allAudio = document.querySelectorAll('audio');
-            allAudio.forEach((audio) => {
-                audio.pause();
+        previousButton.disabled = true;
+        nextButton.disabled = true;
+        playButton.disabled = false;
+        updatePlayerState();
+
+        playButton.addEventListener('click', () => {
+            if (isPlaying) {
+                pauseCurrentAudio();
+                updatePlayerState();
+                return;
+            }
+
+            playCurrentVersion();
+        });
+
+        previousButton.addEventListener('click', () => {
+            if (hasCompletedPlayback) {
+                hasCompletedPlayback = false;
+                setAllAudioTimes(0);
+                updateProgress();
+                updatePlayerState();
+                return;
+            }
+
+            switchVersion(-1);
+        });
+
+        nextButton.addEventListener('click', () => {
+            hasCompletedPlayback = false;
+            switchVersion(1);
+        });
+
+        progress.addEventListener('click', (event) => {
+            if (!hasStarted) {
+                return;
+            }
+
+            const activeAudio = getActiveVersion().audio;
+
+            if (!Number.isFinite(activeAudio.duration) || activeAudio.duration <= 0) {
+                return;
+            }
+
+            const rect = progress.getBoundingClientRect();
+            const percentage = Math.min(Math.max((event.clientX - rect.left) / rect.width, 0), 1);
+            const nextTime = percentage * activeAudio.duration;
+
+            setAllAudioTimes(nextTime);
+            hasCompletedPlayback = false;
+            updateProgress();
+        });
+
+        versions.forEach(({ audio }) => {
+            audio.addEventListener('timeupdate', updateProgress);
+            audio.addEventListener('loadedmetadata', updateProgress);
+            audio.addEventListener('ended', () => {
+                isPlaying = false;
+                hasCompletedPlayback = true;
+                stopProgressAnimation();
+                updateProgress();
+                updatePlayerState();
             });
-            document.querySelectorAll('.play__button').forEach((button) => {
-                button.innerHTML = playIcon;
+        });
+
+        function getActiveVersion() {
+            return versions[currentVersionIndex];
+        }
+
+        function playCurrentVersion() {
+            const activeVersion = getActiveVersion();
+            const activeAudio = activeVersion.audio;
+
+            pauseOtherPlayers();
+            hasStarted = true;
+            hasCompletedPlayback = false;
+            previousButton.disabled = false;
+            nextButton.disabled = false;
+
+            if (isAudioAtEnd(activeAudio)) {
+                setAllAudioTimes(0);
+            }
+
+            activeAudio.play()
+                .then(() => {
+                    isPlaying = true;
+                    updatePlayerState();
+                    startProgressAnimation();
+                })
+                .catch(() => {
+                    isPlaying = false;
+                    updatePlayerState();
+                });
+        }
+
+        function switchVersion(direction) {
+            if (!hasStarted) {
+                return;
+            }
+
+            const wasPlaying = isPlaying;
+            const currentTime = getCurrentPlaybackTime();
+
+            pauseCurrentAudio();
+            hasCompletedPlayback = false;
+            currentVersionIndex = (currentVersionIndex + direction + versions.length) % versions.length;
+            setAllAudioTimes(currentTime);
+            updateProgress();
+
+            if (wasPlaying) {
+                playCurrentVersion();
+                return;
+            }
+
+            updatePlayerState();
+        }
+
+        function pauseOtherPlayers() {
+            instances.forEach((otherInstance) => {
+                if (otherInstance !== instance) {
+                    otherInstance.pauseFromOutside();
+                }
             });
         }
 
-        //Frame animations for progress bar fill - converts to CSS percentage
-        function stepA() {
-            progressFill.style.width =
-                ((soundA.currentTime / soundA.duration) * 100 || 0) + '%';
-            requestAnimationFrame(stepA);
-        }
-        function stepB() {
-            progressFill.style.width =
-                ((soundB.currentTime / soundB.duration) * 100 || 0) + '%';
-            requestAnimationFrame(stepB);
-        }
-        function stepC() {
-            progressFill.style.width =
-                ((soundC.currentTime / soundC.duration) * 100 || 0) + '%';
-            requestAnimationFrame(stepC);
+        function pauseCurrentAudio() {
+            versions.forEach(({ audio }) => audio.pause());
+            isPlaying = false;
+            stopProgressAnimation();
         }
 
-        // Tooltip functionality
-        const tooltipWrappers = player.querySelectorAll('.tooltip__wrapper');
+        function updatePlayerState() {
+            const activeVersion = getActiveVersion();
 
-        tooltipWrappers.forEach((wrapper) => {
-            const icon = wrapper.querySelector('.tooltip__icon');
-            const tooltipText = wrapper.querySelector('.tooltip__text');
+            playButton.innerHTML = isPlaying ? pauseIcon : playIcon;
+            playButton.setAttribute('aria-label', isPlaying ? 'Pause audio' : 'Play audio');
+            player.classList.toggle('is-playing', isPlaying);
 
-            // Function to check and adjust tooltip position to stay within player bounds
-            const adjustTooltipPosition = () => {
-                const playerRect = player.getBoundingClientRect();
-                const tooltipRect = tooltipText.getBoundingClientRect();
+            if (versionText) {
+                versionText.innerHTML = hasStarted ? activeVersion.label : '&nbsp;';
+            }
 
-                // Check if tooltip overflows to the right of player wrapper
-                if (tooltipRect.right > playerRect.right - 10) {
-                    // Position tooltip to the left of the icon instead
-                    tooltipText.style.left = 'auto';
-                    tooltipText.style.right = 'calc(100% + 0.5rem)';
+            if (overlay) {
+                overlay.textContent = hasStarted ? activeVersion.tooltip : '';
+            }
+        }
+
+        function updateProgress() {
+            const activeAudio = getActiveVersion().audio;
+            const duration = activeAudio.duration;
+            const currentTime = activeAudio.currentTime;
+            const percentage = Number.isFinite(duration) && duration > 0
+                ? (currentTime / duration) * 100
+                : 0;
+
+            progressFill.style.width = `${Math.min(Math.max(percentage, 0), 100)}%`;
+        }
+
+        function startProgressAnimation() {
+            stopProgressAnimation();
+
+            const step = () => {
+                updateProgress();
+
+                if (isPlaying) {
+                    animationFrameId = requestAnimationFrame(step);
                 }
             };
 
-            // Toggle tooltip on click/tap
-            icon.addEventListener('click', (e) => {
-                e.stopPropagation(); // Prevent event bubbling
+            animationFrameId = requestAnimationFrame(step);
+        }
 
-                // Close other tooltips
-                tooltipWrappers.forEach((otherWrapper) => {
-                    if (otherWrapper !== wrapper) {
-                        otherWrapper.classList.remove('active');
-                    }
-                });
+        function stopProgressAnimation() {
+            if (animationFrameId !== null) {
+                cancelAnimationFrame(animationFrameId);
+                animationFrameId = null;
+            }
+        }
 
-                // Toggle current tooltip
-                wrapper.classList.toggle('active');
+        function getCurrentPlaybackTime() {
+            return Math.max(...versions.map(({ audio }) => audio.currentTime || 0));
+        }
 
-                // Adjust position after showing to prevent overflow
-                if (wrapper.classList.contains('active')) {
-                    setTimeout(adjustTooltipPosition, 10);
+        function setAllAudioTimes(time) {
+            versions.forEach(({ audio }) => {
+                if (!Number.isFinite(audio.duration) || audio.duration <= 0) {
+                    audio.currentTime = time;
+                    return;
                 }
+
+                audio.currentTime = Math.min(time, Math.max(audio.duration - 0.05, 0));
             });
+        }
 
-            // Also check position on hover for desktop
-            if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-                wrapper.addEventListener('mouseenter', () => {
-                    setTimeout(adjustTooltipPosition, 10);
-                });
-            }
-        });
-
-        // Close tooltips when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.tooltip__wrapper')) {
-                tooltipWrappers.forEach((wrapper) => {
-                    wrapper.classList.remove('active');
-                });
-            }
-        });
+        function isAudioAtEnd(audio) {
+            return Number.isFinite(audio.duration)
+                && audio.duration > 0
+                && audio.currentTime >= audio.duration - 0.05;
+        }
     });
 }

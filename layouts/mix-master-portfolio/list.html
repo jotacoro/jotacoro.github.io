@@ -6,10 +6,11 @@
 
 {{- if not .IsHome | and .Title }}
 
-{{ $customCSS := resources.Get "css/common/mix-master-portfolio.css" }}
-{{ if $customCSS }}
-<link rel="stylesheet" href="{{ $customCSS.RelPermalink }}">
-{{ end }}
+{{- range (slice "css/common/mix-master-portfolio.css" "css/common/audio-player.css") }}
+{{- with resources.Get . }}
+<link rel="stylesheet" href="{{ .RelPermalink }}">
+{{- end }}
+{{- end }}
 
 <header class="page-header">
     {{- partial "breadcrumbs.html" . }}
@@ -71,15 +72,8 @@
     {{- end }}
 
     <article class="{{ $class }}">
-        {{- $isHidden := (site.Params.cover.hidden | default site.Params.cover.hiddenInList) }}
-        {{- partial "cover.html" (dict "cxt" . "IsHome" true "isHidden" $isHidden) }}
-        {{- partial "audio-player.html" .Params }}
-        <header class="entry-header">
-            <h2>
-                {{- .Title }}
-                {{- if .Draft }}<sup><span class="entry-isdraft">&nbsp;&nbsp;[draft]</span></sup>{{- end }}
-            </h2>
-        </header>
+        {{- partial "audio-player.html" . }}
+        {{- if .Draft }}<sup><span class="entry-isdraft">&nbsp;&nbsp;[draft]</span></sup>{{- end }}
         {{- partial "song_notes.html" .Params.songNotes }}
         {{- partial "social_icons.html" .Params.socialIcons -}}
         {{- if (ne (.Param "hideSummary") true) }}
@@ -115,8 +109,6 @@
 
 {{- end }}{{/* end profileMode */}}
 
-{{ with resources.Get "js/audio-player.js" }}
-<script src="{{ .RelPermalink }}"></script>
-{{ end }}
+<script defer src="{{ "js/audio-player.js" | relURL }}"></script>
 
 {{- end }}{{- /* end main */ -}}
