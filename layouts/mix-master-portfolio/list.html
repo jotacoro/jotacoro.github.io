@@ -109,6 +109,8 @@
 
 {{- end }}{{/* end profileMode */}}
 
-<script defer src="{{ "js/audio-player.js" | relURL }}"></script>
+{{ with resources.Get "js/audio-player.js" }}
+<script src="{{ .RelPermalink }}"></script>
+{{ end }}
 
 {{- end }}{{- /* end main */ -}}
