@@ -22,7 +22,6 @@
   top: 0;
   margin-top: 50px;
   flex-direction: column;
-  list-style-type: none;
   left: 0;
   width: 100%;
   justify-content: center;
@@ -135,7 +134,9 @@ body:not(.dark) #sun {
 
 .ham-menu-button-container {
     display: flex;
-    height: 100%;
+    position: relative;
+    width: 60px;
+    height: var(--header-height);
     cursor: pointer;
     flex-direction: column;
     justify-content: center;
@@ -172,7 +173,7 @@ body:not(.dark) #sun {
 }
 
 #ham-menu-toggle:checked + .ham-menu-button-container .ham-menu-button::before {
-  margin-top: 0px;
+  margin-top: 0;
   transform: rotate(405deg);
 }
 
@@ -181,7 +182,7 @@ body:not(.dark) #sun {
 }
 
 #ham-menu-toggle:checked + .ham-menu-button-container .ham-menu-button::after {
-  margin-top: 0px;
+  margin-top: 0;
   transform: rotate(-405deg);
 }
 
