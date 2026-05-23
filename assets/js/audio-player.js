@@ -8,6 +8,19 @@ function initializePlayers(players) {
     const pauseIcon = '<i class="fa-solid fa-pause"></i>';
     const loadingIcon = '<i class="fa-solid fa-spinner"></i>';
 
+    const AudioContextCtor = window.AudioContext || window.webkitAudioContext;
+    let sharedContext = null;
+
+    function getSharedContext() {
+        if (!AudioContextCtor) {
+            return null;
+        }
+        if (!sharedContext) {
+            sharedContext = new AudioContextCtor();
+        }
+        return sharedContext;
+    }
+
     players.forEach((player) => {
         const playButton = player.querySelector('.play__button');
         const previousButton = player.querySelector('.previous__button');
@@ -37,28 +50,26 @@ function initializePlayers(players) {
                 label: player.getAttribute('data-version-c'),
                 tooltip: player.getAttribute('data-tooltip-c'),
             },
-        ].map((version) => {
-            const audio = document.createElement('audio');
-            audio.src = version.src;
-            audio.preload = 'none';
-            audio.setAttribute('hidden', 'true');
-            document.body.append(audio);
-
-            return {
-                ...version,
-                audio,
-            };
-        });
+        ].map((version) => ({
+            ...version,
+            buffer: null,
+            decodePromise: null,
+            source: null,
+            gain: null,
+        }));
 
         let currentVersionIndex = 0;
         let hasStarted = false;
         let isPlaying = false;
         let isLoading = false;
-        let hasWarmedAlternateVersions = false;
         let hasCompletedPlayback = false;
         let animationFrameId = null;
         let playRequestId = 0;
-        const requestedPreloads = new WeakMap();
+
+        // Playback time tracking
+        let baseOffset = 0;          // offset (in seconds) at which current sources were started
+        let startedAtCtxTime = 0;    // AudioContext.currentTime when sources started
+        let sourcesActive = false;   // whether running source nodes exist
 
         const instance = {
             pauseFromOutside() {
@@ -79,19 +90,15 @@ function initializePlayers(players) {
                 updatePlayerState();
                 return;
             }
-
             playCurrentVersion();
         });
 
         previousButton.addEventListener('click', () => {
             if (hasCompletedPlayback) {
                 hasCompletedPlayback = false;
-                setAllAudioTimes(0);
-                updateProgress();
-                updatePlayerState();
+                seekTo(0);
                 return;
             }
-
             switchVersion(-1);
         });
 
@@ -104,61 +111,170 @@ function initializePlayers(players) {
             if (!hasStarted) {
                 return;
             }
-
-            const activeAudio = getActiveVersion().audio;
-
-            if (!Number.isFinite(activeAudio.duration) || activeAudio.duration <= 0) {
+            const duration = getActiveDuration();
+            if (!Number.isFinite(duration) || duration <= 0) {
                 return;
             }
-
             const rect = progress.getBoundingClientRect();
             const percentage = Math.min(Math.max((event.clientX - rect.left) / rect.width, 0), 1);
-            const nextTime = percentage * activeAudio.duration;
-
-            setAllAudioTimes(nextTime);
             hasCompletedPlayback = false;
-            updateProgress();
-        });
-
-        versions.forEach(({ audio }) => {
-            audio.addEventListener('timeupdate', updateProgress);
-            audio.addEventListener('loadedmetadata', updateProgress);
-            audio.addEventListener('waiting', () => {
-                if (audio === getActiveVersion().audio && (isPlaying || isLoading)) {
-                    setLoading(true);
-                }
-            });
-            audio.addEventListener('playing', () => {
-                if (audio === getActiveVersion().audio) {
-                    isPlaying = true;
-                    setLoading(false);
-                    updatePlayerState();
-                    startProgressAnimation();
-                }
-            });
-            audio.addEventListener('canplay', () => {
-                if (audio === getActiveVersion().audio) {
-                    setLoading(false);
-                }
-            });
-            audio.addEventListener('ended', () => {
-                isPlaying = false;
-                setLoading(false);
-                hasCompletedPlayback = true;
-                stopProgressAnimation();
-                updateProgress();
-                updatePlayerState();
-            });
+            seekTo(percentage * duration);
         });
 
         function getActiveVersion() {
             return versions[currentVersionIndex];
         }
 
+        function getActiveDuration() {
+            const buf = getActiveVersion().buffer;
+            return buf ? buf.duration : NaN;
+        }
+
+        function getCurrentPlaybackTime() {
+            const ctx = sharedContext;
+            if (sourcesActive && isPlaying && ctx) {
+                const t = baseOffset + (ctx.currentTime - startedAtCtxTime);
+                const duration = getActiveDuration();
+                if (Number.isFinite(duration) && duration > 0) {
+                    return Math.min(t, duration);
+                }
+                return t;
+            }
+            return baseOffset;
+        }
+
+        function fetchAndDecode(version) {
+            if (version.buffer) {
+                return Promise.resolve(version.buffer);
+            }
+            if (version.decodePromise) {
+                return version.decodePromise;
+            }
+            const ctx = getSharedContext();
+            if (!ctx) {
+                return Promise.reject(new Error('Web Audio API not supported'));
+            }
+            version.decodePromise = fetch(version.src)
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error(`Failed to fetch audio: ${response.status}`);
+                    }
+                    return response.arrayBuffer();
+                })
+                .then((arrayBuffer) => new Promise((resolve, reject) => {
+                    // Use callback form for Safari compatibility; some versions
+                    // do not return a Promise from decodeAudioData.
+                    try {
+                        const maybePromise = ctx.decodeAudioData(arrayBuffer, resolve, reject);
+                        if (maybePromise && typeof maybePromise.then === 'function') {
+                            maybePromise.then(resolve, reject);
+                        }
+                    } catch (err) {
+                        reject(err);
+                    }
+                }))
+                .then((buffer) => {
+                    version.buffer = buffer;
+                    return buffer;
+                })
+                .catch((err) => {
+                    version.decodePromise = null;
+                    throw err;
+                });
+            return version.decodePromise;
+        }
+
+        function ensureAllDecoded() {
+            return Promise.all(versions.map((v) => fetchAndDecode(v)));
+        }
+
+        function stopSources() {
+            versions.forEach((v) => {
+                if (v.source) {
+                    try {
+                        v.source.onended = null;
+                        v.source.stop();
+                    } catch (e) { /* already stopped */ }
+                    try { v.source.disconnect(); } catch (e) {}
+                    v.source = null;
+                }
+                if (v.gain) {
+                    try { v.gain.disconnect(); } catch (e) {}
+                    v.gain = null;
+                }
+            });
+            sourcesActive = false;
+        }
+
+        function startSourcesAt(offset) {
+            const ctx = getSharedContext();
+            if (!ctx) return;
+
+            stopSources();
+
+            const when = ctx.currentTime;
+
+            versions.forEach((v, index) => {
+                if (!v.buffer) return;
+                const source = ctx.createBufferSource();
+                source.buffer = v.buffer;
+                const gain = ctx.createGain();
+                gain.gain.value = index === currentVersionIndex ? 1 : 0;
+                source.connect(gain).connect(ctx.destination);
+
+                const safeOffset = Math.min(
+                    Math.max(offset, 0),
+                    Math.max(v.buffer.duration - 0.0001, 0)
+                );
+                try {
+                    source.start(when, safeOffset);
+                } catch (e) { /* ignore */ }
+
+                v.source = source;
+                v.gain = gain;
+            });
+
+            baseOffset = offset;
+            startedAtCtxTime = when;
+            sourcesActive = true;
+
+            attachEndedHandlerToActive();
+        }
+
+        function attachEndedHandlerToActive() {
+            const ctx = sharedContext;
+            if (!ctx) return;
+            versions.forEach((v, index) => {
+                if (!v.source) return;
+                if (index === currentVersionIndex && v.buffer) {
+                    const source = v.source;
+                    const activeBuffer = v.buffer;
+                    source.onended = () => {
+                        if (v.source !== source) return;
+                        const elapsed = ctx.currentTime - startedAtCtxTime;
+                        const reachedEnd = (baseOffset + elapsed) >= (activeBuffer.duration - 0.05);
+                        if (reachedEnd && isPlaying) {
+                            isPlaying = false;
+                            hasCompletedPlayback = true;
+                            baseOffset = activeBuffer.duration;
+                            sourcesActive = false;
+                            stopProgressAnimation();
+                            updateProgress();
+                            updatePlayerState();
+                        }
+                    };
+                } else {
+                    v.source.onended = null;
+                }
+            });
+        }
+
         function playCurrentVersion() {
-            const activeVersion = getActiveVersion();
-            const activeAudio = activeVersion.audio;
-            const requestedTime = activeAudio.currentTime || 0;
+            const ctx = getSharedContext();
+            if (!ctx) {
+                return;
+            }
+
             const requestId = playRequestId + 1;
             playRequestId = requestId;
 
@@ -168,37 +284,30 @@ function initializePlayers(players) {
             previousButton.disabled = false;
             nextButton.disabled = false;
 
-            if (isAudioAtEnd(activeAudio)) {
-                setAllAudioTimes(0);
-            }
-
-            prepareAudio(activeAudio, 'auto');
-
-            if (requestedTime > 0) {
-                setAudioTime(activeAudio, requestedTime);
-            }
-
             setLoading(true);
+            updatePlayerState();
 
-            const playPromise = activeAudio.play();
+            const resumePromise = ctx.state === 'suspended' ? ctx.resume() : Promise.resolve();
 
-            Promise.resolve(playPromise)
+            resumePromise
+                .then(() => ensureAllDecoded())
                 .then(() => {
-                    if (requestId !== playRequestId) {
-                        return;
+                    if (requestId !== playRequestId) return;
+
+                    let offset = baseOffset;
+                    const duration = getActiveDuration();
+                    if (Number.isFinite(duration) && duration > 0 && offset >= duration - 0.05) {
+                        offset = 0;
                     }
 
+                    startSourcesAt(offset);
                     isPlaying = true;
                     setLoading(false);
                     updatePlayerState();
                     startProgressAnimation();
-                    warmUpAlternateVersions();
                 })
                 .catch(() => {
-                    if (requestId !== playRequestId) {
-                        return;
-                    }
-
+                    if (requestId !== playRequestId) return;
                     isPlaying = false;
                     setLoading(false);
                     updatePlayerState();
@@ -210,21 +319,43 @@ function initializePlayers(players) {
                 return;
             }
 
-            const shouldResume = isPlaying || isLoading;
-            const currentTime = getCurrentPlaybackTime();
-
-            pauseCurrentAudio();
-            hasCompletedPlayback = false;
             currentVersionIndex = (currentVersionIndex + direction + versions.length) % versions.length;
-            setAllAudioTimes(currentTime);
-            updateProgress();
+            hasCompletedPlayback = false;
 
-            if (shouldResume) {
-                playCurrentVersion();
-                return;
+            // Sample-accurate, zero-latency A/B/C switch: just flip the gains.
+            // All sources are running in lockstep, so this is glitch-free.
+            const ctx = sharedContext;
+            if (sourcesActive && ctx) {
+                versions.forEach((v, index) => {
+                    if (v.gain) {
+                        v.gain.gain.setValueAtTime(
+                            index === currentVersionIndex ? 1 : 0,
+                            ctx.currentTime
+                        );
+                    }
+                });
+                attachEndedHandlerToActive();
             }
 
+            updateProgress();
             updatePlayerState();
+        }
+
+        function seekTo(time) {
+            const wasPlaying = isPlaying || isLoading;
+            if (sourcesActive) {
+                stopSources();
+            }
+            baseOffset = Math.max(0, time);
+            isPlaying = false;
+            stopProgressAnimation();
+
+            if (wasPlaying) {
+                playCurrentVersion();
+            } else {
+                updateProgress();
+                updatePlayerState();
+            }
         }
 
         function pauseOtherPlayers() {
@@ -237,7 +368,17 @@ function initializePlayers(players) {
 
         function pauseCurrentAudio() {
             playRequestId += 1;
-            versions.forEach(({ audio }) => audio.pause());
+            const ctx = sharedContext;
+            if (sourcesActive && ctx) {
+                const elapsed = ctx.currentTime - startedAtCtxTime;
+                const duration = getActiveDuration();
+                let newOffset = baseOffset + elapsed;
+                if (Number.isFinite(duration) && duration > 0) {
+                    newOffset = Math.min(newOffset, duration);
+                }
+                baseOffset = Math.max(0, newOffset);
+            }
+            stopSources();
             isPlaying = false;
             setLoading(false);
             stopProgressAnimation();
@@ -246,39 +387,6 @@ function initializePlayers(players) {
         function setLoading(loading) {
             isLoading = loading;
             updatePlayerState();
-        }
-
-        function prepareAudio(audio, preload = 'auto') {
-            const previousPreload = requestedPreloads.get(audio);
-
-            if (audio.preload !== preload) {
-                audio.preload = preload;
-            }
-
-            if (previousPreload !== preload) {
-                audio.load();
-                requestedPreloads.set(audio, preload);
-            }
-        }
-
-        function warmUpAlternateVersions() {
-            if (hasWarmedAlternateVersions) {
-                return;
-            }
-
-            hasWarmedAlternateVersions = true;
-
-            window.setTimeout(() => {
-                versions.forEach(({ audio }, index) => {
-                    if (index !== currentVersionIndex) {
-                        prepareAudio(audio, shouldAvoidBackgroundPreload() ? 'metadata' : 'auto');
-                    }
-                });
-            }, 250);
-        }
-
-        function shouldAvoidBackgroundPreload() {
-            return Boolean(navigator.connection && navigator.connection.saveData);
         }
 
         function updatePlayerState() {
@@ -300,9 +408,8 @@ function initializePlayers(players) {
         }
 
         function updateProgress() {
-            const activeAudio = getActiveVersion().audio;
-            const duration = activeAudio.duration;
-            const currentTime = activeAudio.currentTime;
+            const duration = getActiveDuration();
+            const currentTime = getCurrentPlaybackTime();
             const percentage = Number.isFinite(duration) && duration > 0
                 ? (currentTime / duration) * 100
                 : 0;
@@ -315,7 +422,6 @@ function initializePlayers(players) {
 
             const step = () => {
                 updateProgress();
-
                 if (isPlaying) {
                     animationFrameId = requestAnimationFrame(step);
                 }
@@ -329,43 +435,6 @@ function initializePlayers(players) {
                 cancelAnimationFrame(animationFrameId);
                 animationFrameId = null;
             }
-        }
-
-        function getCurrentPlaybackTime() {
-            return Math.max(...versions.map(({ audio }) => audio.currentTime || 0));
-        }
-
-        function setAllAudioTimes(time) {
-            versions.forEach(({ audio }) => {
-                const nextTime = !Number.isFinite(audio.duration) || audio.duration <= 0
-                    ? time
-                    : Math.min(time, Math.max(audio.duration - 0.05, 0));
-
-                if (!Number.isFinite(nextTime) || nextTime < 0) {
-                    return;
-                }
-
-                if (!Number.isFinite(audio.duration) || audio.duration <= 0) {
-                    setAudioTime(audio, nextTime);
-                    return;
-                }
-
-                setAudioTime(audio, nextTime);
-            });
-        }
-
-        function setAudioTime(audio, time) {
-            try {
-                audio.currentTime = time;
-            } catch (error) {
-                // Some browsers reject early seeks before metadata is available.
-            }
-        }
-
-        function isAudioAtEnd(audio) {
-            return Number.isFinite(audio.duration)
-                && audio.duration > 0
-                && audio.currentTime >= audio.duration - 0.05;
         }
     });
 }
