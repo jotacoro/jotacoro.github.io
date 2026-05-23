@@ -98,7 +98,22 @@
 
                 {{- $lang := .Lang}}
                 {{- $separator := or $label_text (not site.Params.disableThemeToggle)}}
-                {{- with site.Home.AllTranslations }}
+                {{- $currentTranslations := .AllTranslations }}
+                {{- $entries := slice }}
+                {{- range site.Home.AllTranslations }}
+                    {{- $homeTranslation := . }}
+                    {{- $matched := false }}
+                    {{- range $currentTranslations }}
+                        {{- if eq .Lang $homeTranslation.Lang }}
+                            {{- $entries = $entries | append . }}
+                            {{- $matched = true }}
+                        {{- end }}
+                    {{- end }}
+                    {{- if not $matched }}
+                        {{- $entries = $entries | append $homeTranslation }}
+                    {{- end }}
+                {{- end }}
+                {{- with $entries }}
                 <ul class="lang-switch">
                     {{- if $separator }}<li>|</li>{{ end }}
                     {{- range . -}}
