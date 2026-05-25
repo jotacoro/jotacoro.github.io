@@ -10,7 +10,8 @@ main:
     weight: 20
   - identifier: contact
     name: Envíame tu propuesta
-    url: "mailto:hola@juanddddiego.com"
+    params:
+      contact-form-id: dWk8Yq
     weight: 30
   - identifier: bookings
     name: Haz una reserva

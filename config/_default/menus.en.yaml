@@ -10,7 +10,8 @@ main:
     weight: 20    
   - identifier: contact
     name: Submit request
-    url: "mailto:hola@juanddddiego.com"
+    params:
+      contact-form-id: Me766E
     weight: 30
   - identifier: bookings
     name: Book a meeting
