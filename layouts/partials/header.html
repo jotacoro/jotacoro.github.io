@@ -145,7 +145,7 @@
                 {{- $is_search := eq (site.GetPage .KeyName).Layout `search` }}
                 {{- $is_contact := eq .Identifier "contact" }}
                 {{- $tally_id := index .Params "contact-form-id" }}
-                <li{{ if $is_contact }} data-tally-open="{{ $tally_id }}" data-tally-emoji-text="👋" data-tally-emoji-animation="wave" data-tally-auto-close="0"{{ end }}>
+                <li{{ if $is_contact }} data-tally-open="{{ $tally_id }}" data-tally-emoji-text="🤙" data-tally-emoji-animation="wave" data-tally-auto-close="0" onclick="document.getElementById('ham-menu-toggle').checked = false;"{{ end }}>
                     <a href="{{ if $is_contact }}#{{ else }}{{ .URL | absLangURL }}{{ end }}" title="{{ .Title | default .Name }} {{- cond $is_search (" (Alt + /)" | safeHTMLAttr) ("" | safeHTMLAttr ) }}"
                     {{- cond $is_search (" accesskey=/" | safeHTMLAttr) ("" | safeHTMLAttr ) }}>
                         <span {{- if eq $menu_item_url $page_url }} class="active" {{- end }}>
