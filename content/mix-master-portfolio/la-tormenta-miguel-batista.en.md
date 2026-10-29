@@ -10,11 +10,11 @@ masterTrimUrl: "tormenta_master-match.mp3"
 masterUrl: "tormenta_master.mp3"
 songNotes: [
   "Mix/Master for [Miguel Batista](https://www.instagram.com/miguel.batista_/).",
-  "I don't know what to write here.",
+  "Track #4 from their [album debut](https://open.spotify.com/album/5k8bIp7kNlZpyDs1djif7X)",
 ]
 socialIcons:
   - name: "spotify"
-    url: "https://open.spotify.com/intl-es/track/2yWBnCA9Sa8VRprcmCSWTm"
+    url: "https://open.spotify.com/track/2yWBnCA9Sa8VRprcmCSWTm"
   - name: "tidal"
     url: "https://tidal.com/track/568707026/u"
 ---

@@ -10,11 +10,11 @@ masterTrimUrl: "tormenta_master-match.mp3"
 masterUrl: "tormenta_master.mp3"
 songNotes: [
   "Mix/Master para [Miguel Batista](https://www.instagram.com/miguel.batista_/).",
-  "No sé qué poner.",
+  "Track #4 de su [álbum debut](https://open.spotify.com/album/5k8bIp7kNlZpyDs1djif7X)",
 ]
 socialIcons:
   - name: "spotify"
-    url: "https://open.spotify.com/intl-es/track/2yWBnCA9Sa8VRprcmCSWTm"
+    url: "https://open.spotify.com/track/2yWBnCA9Sa8VRprcmCSWTm"
   - name: "tidal"
     url: "https://tidal.com/track/568707026/u"
 ---
