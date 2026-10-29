@@ -1,5 +1,5 @@
 ---
-languageCode: en
+locale: en
 params:
   DateFormat: January 02, 2006
   label:

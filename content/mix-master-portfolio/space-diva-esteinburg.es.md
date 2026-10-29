@@ -5,9 +5,9 @@ type: page
 description: Mix/Master para canción de videojuegos.
 topic: blog, hugo, github
 songImageUrl: "/space-diva.jpeg"
-clientReferenceUrl: "spaceDiva_Steinburg_Track_clientReference.mp3"
-masterTrimUrl: "spaceDiva_Steinburg_Track_Master_MatchClientReferenceGain.mp3"
-masterUrl: "spaceDiva_Steinburg_Track_Master.mp3"
+clientReferenceUrl: "space-diva-steinburg_ref.mp3"
+masterTrimUrl: "space-diva-steinburg_master-match.mp3"
+masterUrl: "space-diva-steinburg_master.mp3"
 songNotes: [
   "Mix/Master para [Las Esteinburg](https://www.instagram.com/lasesteinburg/).",
   "Banda sonora del videojuego [Space Diva](https://www.instagram.com/spacedivagame/).",

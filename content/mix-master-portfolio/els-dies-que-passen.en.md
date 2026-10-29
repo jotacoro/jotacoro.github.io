@@ -5,9 +5,9 @@ type: page
 description: Mix/Master for a cumbia track.
 topic: blog, hugo, github
 songImageUrl: "/els-dies-que-passen.jpeg"
-clientReferenceUrl: "elsDiesQuePassen_clientReference.mp3"
-masterTrimUrl: "elsDiesQuePassen_Master_MatchClientReferenceGain.mp3"
-masterUrl: "elsDiesQuePassen_Master.mp3"
+clientReferenceUrl: "els-dies-que-passen_ref.mp3"
+masterTrimUrl: "els-dies-que-passen_master-match.mp3"
+masterUrl: "els-dies-que-passen_master.mp3"
 songNotes: [
   "Mix/Master for [Exotic](https://www.instagram.com/exotico.christian/) and [Basta Juan](https://www.instagram.com/bastajuanylosfantasmas/).",
   "_cucucummmmbiaaaa_.",
