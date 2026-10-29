@@ -4,7 +4,7 @@ date: 2026-10-23T00:00:00
 type: page
 description: Mix/Master para el álbum debut de Miguel Batista.
 topic: blog, hugo, github
-songImageUrl: "/els-dies-que-passen.jpeg"
+songImageUrl: "/tu-corazon_cover.jpeg"
 clientReferenceUrl: "nino-raro_ref.mp3"
 masterTrimUrl: "nino-raro_master-match.mp3"
 masterUrl: "nino-raro_master.mp3"

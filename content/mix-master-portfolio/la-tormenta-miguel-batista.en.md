@@ -4,7 +4,7 @@ date: 2026-10-23T00:00:00
 type: page
 description: Mix/Master for Miguel Batista' s album debut.
 topic: blog, hugo, github
-songImageUrl: "/els-dies-que-passen.jpeg"
+songImageUrl: "/tu-corazon_cover.jpeg"
 clientReferenceUrl: "tormenta_ref.mp3"
 masterTrimUrl: "tormenta_master-match.mp3"
 masterUrl: "tormenta_master.mp3"
